@@ -1,2 +1,24 @@
-# EMOTI
-Site focado e com jogo orientado para crianças com perturbações no espetro do autismo (PEA). WebPII - Projeto Interdisciplinar do 2º ano de TSIW.
+# emoti
+
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
