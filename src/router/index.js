@@ -1,29 +1,47 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Mainpage from '../views/Mainpage.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Mainpage from '../views/Mainpage.vue';
+// import Register from '../views/Register.vue';
+import About from '../views/About.vue';
 
-Vue.use(VueRouter)
+// import store from '../store/index';
+
+Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: '/',
-    name: 'Mainpage',
-    component: Mainpage
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
+	{
+		path: '/',
+		alias: '/mainpage',
+		name: 'Mainpage',
+		component: Mainpage,
+	},
+	{
+		path: '/about',
+		name: 'About',
+		component: About,
+	},
+	// {
+	// 	path: '/gifts',
+	// 	name: 'Gifts',
+	// 	component: Gifts,
+	// 	meta: {
+	// 		requiresAuth: true,
+	// 	},
+	// },
+];
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
-})
+	mode: 'history',
+	base: process.env.BASE_URL,
+	routes,
+});
 
-export default router
+// router.beforeEach((to, from, next) => {
+// 	if (to.meta.requiresAuth && !store.getters.getLoggedUser) {
+// 		next({ name: 'Login' });
+// 	} else {
+// 		next();
+// 	}
+// });
+
+export default router;
