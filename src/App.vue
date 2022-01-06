@@ -29,7 +29,7 @@
         <!-- Jogos -->
         <div id="menuJogos">
           <img src="./assets/images/icons/jogos.png" width="25px">
-          <router-link to="/about">
+          <router-link to="/Jogos">
             <p id="menuWords">&#160;&#160;&#160;&#160; Jogos &#160;&#160;&#160;&#160;&#160;&#160;</p>
           </router-link>
         </div>
