@@ -1,48 +1,59 @@
 <template>
-  <div id="app" >
+  <div id="app">
+    <div id="navBar">
       <div id="menuIcons">
 
          <!-- Suporte Familiar -->
         <div id="menuSuporteFamiliar">
-          <img src="./assets/images/icons/suporteFamiliar.png" width="25px">
+          <img src="./assets/images/icons/suporteFamiliar.png" width="25px" class="ml-2 mr-4">
           <router-link to="/">
-            <p id="menuWords">&#160;&#160;&#160;&#160; Suporte Familiar &#160;&#160;&#160;&#160;&#160;&#160;</p>
+            <p id="menuWords" class="mr-4">Suporte Familiar</p>
           </router-link>
         </div>
 
         <!-- Psicólogos -->
         <div id="menuPsicologos">
-          <img src="./assets/images/icons/psicologos.png" width="25px">
-          <router-link to="/about">
-            <p id="menuWords">&#160;&#160;&#160;&#160; Psicólogos &#160;&#160;&#160;     &#160;&#160;&#160;&#160;&#160;</p>
+          <img src="./assets/images/icons/psicologos.png" width="25px" class="ml-2 mr-4">
+          <router-link to="/about" class="mr-4">
+            <p id="menuWords" class="mr-4">Psicólogos</p>
           </router-link>
         </div>
 
         <!-- Sobre nós -->
         <div id="menuSobreNos">
-          <img src="./assets/images/icons/sobreNos.png" width="25px">
+          <img src="./assets/images/icons/sobreNos.png" width="25px" class="ml-2 mr-4">
           <router-link to="/about">
-            <p id="menuWords">&#160;&#160;&#160;&#160; Sobre nós &#160;&#160;&#160;&#160;&#160;</p>      
+            <p id="menuWords" class="mr-4">Sobre nós</p>      
           </router-link>
         </div>
 
         <!-- Jogos -->
         <div id="menuJogos">
-          <img src="./assets/images/icons/jogos.png" width="25px">
+          <img src="./assets/images/icons/jogos.png" width="25px" class="ml-2 mr-4">
           <router-link to="/Jogos">
-            <p id="menuWords">&#160;&#160;&#160;&#160; Jogos &#160;&#160;&#160;&#160;&#160;&#160;</p>
+            <p id="menuWords" class="mr-4">Jogos</p>
           </router-link>
         </div>
         
       </div>
 
-      <!-- EMOTI LOGO -->
+      <router-link to="/about">
+        <button class="btn mt-3 mr-3" id="btnLoginPage">Iniciar sessão</button>
+      </router-link>
+
+    </div>
+
+    <!-- EMOTI LOGO -->
+    <div style="display: flex; justify-content: center">
       <div id="menuEMOTI" class="mt-3">
         <router-link to="/">
-          <!-- <img src="./assets/images/logo.png"> -->
+          <img src="./assets/images/icons/logotipo.png" width="50px" class="mx-4 my-1">
         </router-link>
       </div>
+    </div>
+
     <router-view/>
+      
   </div>
 </template>
 
@@ -55,25 +66,46 @@
     color: #000000;
   }
 
+  /* NAVBAR */
+  #navBar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  /* DIV com staircase menu */
   #menuIcons {
-    /* display: inline-block; */
+    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
   }
 
+  /* div de cada um dos elementos do staircase menu */
   #menuSuporteFamiliar, #menuPsicologos, #menuSobreNos, #menuJogos {
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     display: flex;
     align-items: center;
   }
+
+  #btnLoginPage {
+    background-color: #FFD167;
+    color: #FFFFFF;
+
+    position: absolute;
+    right: 0px;
+  } #btnLoginPage:hover {
+    background-color: #FFFFFF;
+    color: #FFD167;
+  } #btnLoginPage:active {
+    background-color: #FFFFFF;
+    color: #FFD167;
+  }
   
   /* sombras */
-  #menuSuporteFamiliar, #menuPsicologos, #menuSobreNos {
-    filter: drop-shadow(5px 0px 2px #00000030);
-  } #menuJogos, #menuEMOTI {
-    filter: drop-shadow(5px 7px 2px #00000030);
+  #menuSuporteFamiliar, #menuPsicologos, #menuSobreNos, #menuJogos, #menuEMOTI, #btnLoginPage {
+    filter: drop-shadow(5px 4px 2px #00000030);
   }
 
   #menuSuporteFamiliar {
@@ -85,13 +117,14 @@
   } #menuJogos {
     background-color: #CAF2F2;
   } 
+
   #menuEMOTI {
     background-color: #FFFFFF;
     border-radius: 20px;
-    display: inline-block;
+
     position: absolute;
     top: 0px;
-    left: 50%;
+    display: flex;
   }
 
   router-link {
