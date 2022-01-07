@@ -79,6 +79,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+  } #menuIcons p {
+    font-size: 15px;
   }
 
   /* div de cada um dos elementos do staircase menu */
