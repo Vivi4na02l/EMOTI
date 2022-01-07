@@ -48,6 +48,7 @@
       <div id="menuEMOTI" class="mt-3">
         <router-link to="/">
           <img src="./assets/images/icons/logotipo.png" width="50px" class="mx-4 my-1">
+          <p>{{divNavBar}}</p>
         </router-link>
       </div>
     </div>
@@ -56,6 +57,16 @@
       
   </div>
 </template>
+
+<script>
+export default {
+	data() {
+		return {
+			divNavBar: document.querySelector('#navBar').style.height
+		}
+	},
+}
+</script>
 
 <style>
   #app {
