@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Mainpage from '../views/Mainpage.vue';
 // import Register from '../views/Register.vue';
 import About from '../views/About.vue';
+import Jogos from '../views/Jogos.vue';
 
 // import store from '../store/index';
 
@@ -19,6 +20,11 @@ const routes = [
 		path: '/about',
 		name: 'About',
 		component: About,
+	},
+	{
+		path: '/Jogos',
+		name: 'Jogos',
+		component: Jogos,
 	},
 	// {
 	// 	path: '/gifts',

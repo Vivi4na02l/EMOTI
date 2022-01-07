@@ -30,7 +30,7 @@
         <!-- Jogos -->
         <div id="menuJogos">
           <img src="./assets/images/icons/jogos.png" width="25px" class="ml-2 mr-4">
-          <router-link to="/about">
+          <router-link to="/Jogos">
             <p id="menuWords" class="mr-4">Jogos</p>
           </router-link>
         </div>
