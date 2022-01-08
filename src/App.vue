@@ -7,7 +7,7 @@
         <div id="menuSuporteFamiliar">
           <img src="./assets/images/icons/suporteFamiliar.png" width="25px" class="ml-2 mr-4">
           <router-link to="/">
-            <p id="menuWords" class="mr-4">Suporte Familiar</p>
+            <div class="mr-4 m-2" id="menuWords">Suporte familiar</div>
           </router-link>
         </div>
 
@@ -15,7 +15,7 @@
         <div id="menuPsicologos">
           <img src="./assets/images/icons/psicologos.png" width="25px" class="ml-2 mr-4">
           <router-link to="/about" class="mr-4">
-            <p id="menuWords" class="mr-4">Psicólogos</p>
+            <div class="mr-4 m-2" id="menuWords">Psicólogos</div>
           </router-link>
         </div>
 
@@ -23,7 +23,7 @@
         <div id="menuSobreNos">
           <img src="./assets/images/icons/sobreNos.png" width="25px" class="ml-2 mr-4">
           <router-link to="/about">
-            <p id="menuWords" class="mr-4">Sobre nós</p>      
+            <div class="mr-4 m-2" id="menuWords">Sobre nós</div>     
           </router-link>
         </div>
 
@@ -31,14 +31,14 @@
         <div id="menuJogos">
           <img src="./assets/images/icons/jogos.png" width="25px" class="ml-2 mr-4">
           <router-link to="/Jogos">
-            <p id="menuWords" class="mr-4">Jogos</p>
+            <div class="mr-4 m-2" id="menuWords">Jogos</div>
           </router-link>
         </div>
         
       </div>
 
       <router-link to="/about">
-        <button class="btn mt-3 mr-3" id="btnLoginPage">Iniciar sessão</button>
+        <button class="btn mt-3 mr-3" id="btnLoginPage"><div class="m-1">INICIAR SESSÃO</div></button>
       </router-link>
 
     </div>
@@ -48,7 +48,6 @@
       <div id="menuEMOTI" class="mt-3">
         <router-link to="/">
           <img src="./assets/images/icons/logotipo.png" width="50px" class="mx-4 my-1">
-          <p>{{divNavBar}}</p>
         </router-link>
       </div>
     </div>
@@ -69,12 +68,34 @@ export default {
 </script>
 
 <style>
+  @font-face {
+    font-family: Comfortaa;
+    src: url('./assets/fonts/Comfortaa-VariableFont_wght.ttf');
+  }
+
+  @font-face { 
+    font-family: Baloo_2 extrabold;
+    src: url('./assets/fonts/Baloo2-ExtraBold.ttf');
+  }
+
+  @font-face { 
+    font-family: Baloo_2 Bold;
+    src: url('./assets/fonts/Baloo2-Bold.ttf');
+  }
+
+  @font-face { 
+    font-family: Pacifico;
+    src: url('./assets/fonts/Pacifico-Regular.ttf');
+  }
+
   #app {
-    font-family: 'Comfortaa', cursive;
     /* font-family: 'Nunito Sans', sans-serif; */
+    font-family: Comfortaa;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #000000;
+
+    overflow-x: hidden;
   }
 
   /* NAVBAR */
@@ -86,7 +107,7 @@ export default {
 
   /* DIV com staircase menu */
   #menuIcons {
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -103,10 +124,11 @@ export default {
   }
 
   #btnLoginPage {
+    font-family: Baloo_2 extrabold;
     background-color: #FFD167;
     color: #FFFFFF;
 
-    position: absolute;
+    position: fixed;
     right: 0px;
   } #btnLoginPage:hover {
     background-color: #FFFFFF;
@@ -135,7 +157,7 @@ export default {
     background-color: #FFFFFF;
     border-radius: 20px;
 
-    position: absolute;
+    position: fixed;
     top: 0px;
     display: flex;
   }
