@@ -22,13 +22,10 @@
         <!-- Sobre nós -->
         <div id="menuSobreNos">
           <img src="./assets/images/icons/sobreNos.png" width="25px" class="ml-2 mr-4">
-<<<<<<< HEAD
           <router-link to="/about">
             <p id="menuWords" class="mr-4">Sobre nós</p>      
-=======
           <router-link to="/Jogo1">
             <div class="mr-4 m-2" id="menuWords">Sobre nós</div>     
->>>>>>> 286fb152abc88aa48a1e49a8b0c5e406f4a760ed
           </router-link>
         </div>
 

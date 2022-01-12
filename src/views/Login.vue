@@ -4,7 +4,7 @@
         <img src="../assets/images/curvesBackground/loginPinkOutline.png" width="100%">
         <img src="../assets/images/curvesBackground/loginYellowCurve.png" width="100%"> -->
         <h1>Bem-vindo, junte-se a nós!</h1>
-        <form @submit.prevent="">
+        <form>
             <input type="text" id="txtUsername" placeholder="nome de utilizador" v-model="username" required />
             <input type="password" id="txtPassword" placeholder="palavra-passe" v-model="password" required />
             <input type="submit" value="LOGIN" />
