@@ -67,6 +67,8 @@
         position: absolute;
         left: 30px;
         top: 230px;
+        font-family: Baloo_2 extrabold;
+        color: #606060;
 
     }
 
@@ -74,6 +76,7 @@
         position: absolute;
         left: 50px;
         top: 300px;
+        color: black;
     }
 
     // Botão jogar
@@ -85,10 +88,9 @@
     left: 170px;
     top: 375px;
     border-radius: 14px;
+    filter: drop-shadow(5px 4px 2px #00000030);
 
-    //Animação
-    // animation-timing-function: ease-out;
-    // animation-duration: 3000ms;
+    font-family:Baloo_2 extrabold ;
 
     position: absolute;
     right: 0px;
