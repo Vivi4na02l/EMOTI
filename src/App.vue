@@ -68,6 +68,11 @@ export default {
 </script>
 
 <style>
+  @font-face { 
+    font-family: Pacifico;
+    src: url('./assets/fonts/Pacifico-Regular.ttf');
+  }
+  
   @font-face {
     font-family: Comfortaa;
     src: url('./assets/fonts/Comfortaa-VariableFont_wght.ttf');
@@ -81,11 +86,6 @@ export default {
   @font-face { 
     font-family: Baloo_2 Bold;
     src: url('./assets/fonts/Baloo2-Bold.ttf');
-  }
-
-  @font-face { 
-    font-family: Pacifico;
-    src: url('./assets/fonts/Pacifico-Regular.ttf');
   }
 
   #app {

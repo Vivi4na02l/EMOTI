@@ -28,7 +28,7 @@ const routes = [
 		component: Jogos,
 	},
 	{
-		path: '/Conheces_esta_expressão?',
+		path: '/Jogo1',
 		name: 'Jogo1',
 		component: Jogo1,
 	},
