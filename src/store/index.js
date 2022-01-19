@@ -13,10 +13,7 @@ export default new Vuex.Store({
           type: "admin"
         },
       ],
-      loggedUser: null
-  },
-  getters: {
-    loggedUser: state => state.loggedUser,
+      loggedUser: null,
 
     jogoRecognizeEmotion: [
       {
@@ -93,7 +90,10 @@ export default new Vuex.Store({
       }
     ]
   },
+
   getters: {
+    loggedUser: state => state.loggedUser,
+
     getjogoRecognizeEmotion: (state) => { return state.jogoRecognizeEmotion },
 
     getRandomImageEmotion: (state) => (emotion, image) => 

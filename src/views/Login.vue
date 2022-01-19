@@ -16,7 +16,7 @@
             <br>
             <input type="password" id="txtPassword" placeholder="palavra-passe" v-model="password" required />
             <button class="btn mt-3 mr-3" id="btnIniciar"><div class="m-1">INICIAR SESSÃO</div></button>
-            <button @click="" class="btn mt-3 mr-3" id="btnIniciar"><div class="m-1">CRIAR CONTA</div></button>
+            <button class="btn mt-3 mr-3" id="btnIniciar"><div class="m-1">CRIAR CONTA</div></button>
             <br><br><br><br>
         </form>
     </div>
