@@ -20,20 +20,45 @@
 
         <div class="explanation-container">
             <div class="wrapper">
+
                 <div id="gm">
-                    <h2>O poder da gamificação em pessoas com autismo</h2>
-                    <div id="container">
-                        <p>Os jogos caracterizam-se por uma importante e viável alternativa de auxílio. Através deles, o aprendizado torna-se mais fácil e tranquilo de absorver. Assim, a gamificação pode aumentar o engajamento e a aprendizagem de crianças autistas.</p>
+                    <div style="display: block;">  
+                        <h2>O poder da <p style="color: #4081E2; display: inline;">gamificação</p> em pessoas com autismo</h2>
                     </div>
+
+                    <div>
+                        <table style="width: 100%;"><tr><td></td><td id="backgroundImage" rowspan=2>
+                            
+                            <div id="divLinhaVerde">
+                                <img id="linhaVerde" src="../assets/images/curvesBackground/linha curvada verde.svg" width="65%">
+                            </div>
+                                <!-- <img src="../assets/images/curvesBackground/Peças.svg" width="100%"> -->
+                            
+                        </td></tr><tr>
+                        <td colspan=2>
+                    
+                                <div id="container">
+                                    <p>Os jogos caracterizam-se por uma importante e viável alternativa de auxílio. Através deles, o aprendizado torna-se mais fácil e tranquilo de absorver. Assim, a gamificação pode aumentar o engajamento e a aprendizagem de crianças autistas.</p>
+                                </div>
+
+                        </td></tr></table>
+                    </div>
+                
                 </div>
             </div>
         </div>
+
+        <Footer></Footer>        
     </div>
 </template>
 
 <script>
+import Footer from '../components/Footer.vue'
+
     export default {
-        
+        components:{
+            Footer  
+        },
     }
 
     
@@ -56,26 +81,24 @@
         width: 1200px;
         margin: 0 auto;
     }
+
     header{
         display: flex;
-        
         justify-content: space-between;
-        
     }
 
     header h2{
-        position: absolute;
-        left: 30px;
+        position: relative;
+        left: -30px;
         top: 230px;
         font-family: Baloo_2 extrabold;
         color: #606060;
-
     }
 
     header p{
-        position: absolute;
-        left: 50px;
-        top: 300px;
+        position: relative;
+        left: -10px;
+        top: 250px;
         color: black;
     }
 
@@ -85,14 +108,14 @@
     color: #FFFFFF;
     height: 55px;
     width: 140px;
-    left: 170px;
-    top: 375px;
+    left: -20px;
+    top: 260px;
     border-radius: 14px;
     filter: drop-shadow(5px 4px 2px #00000030);
 
     font-family:Baloo_2 extrabold ;
 
-    position: absolute;
+    position: relative;
     right: 0px;
   } #btnJogar:hover {
     background-color: #FFFFFF;
@@ -102,13 +125,15 @@
     color: #29ABE2;
   }
 
+    #gm {
+        bottom: 5000px;
+    }
 
     #gm h2{
-         position: absolute;
-         left: 220px;
-         top: 690px;
-         
-         font-family: Baloo 2;
+         position: relative;
+         left: 15px;
+         top: 70px;
+        font-family: Baloo_2 extrabold;
         font-style: normal;
         font-weight: 800;
         font-size: 40px;
@@ -120,21 +145,47 @@
     }
 
     #container{
-        position: absolute;
-        width: 800px;
+        
+        position: relative;
+        width: 900px;
         height: 200px;
-        left: 280px;
-        top: 800px;
+        left: 150px;
+        top: 130px;
+        
+        z-index: -1;
+        
 
         background: #B7E7E7;
         border-radius: 50px;
     }
 
     #container p{
-        position: absolute;
+        position: relative;
         left: 50px;
         top: 70px;
+        color: black;
+        font-size: 18px;
+        width:820px
         
     }
+
+    #backgroundImage {
+        background-image: url("../assets/images/curvesBackground/Peças.svg");
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        // display: flex;
+    }
+
+    #divLinhaVerde {
+        display: flex;
+        justify-content: flex-end;
+        position: relative;
+         left: -165px;
+         top: 40px;
+         
+    }
+
+    
 
 </style>
