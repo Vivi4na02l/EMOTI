@@ -36,9 +36,9 @@
 
 		<div id="pinkSection">
 			<table style="width: 100%;"><tr><td></td><td rowspan=2>
-
-					<img src="../assets/images/curvesBackground/mainpagePink.png" width="50%">
-				
+					<div id="pinkImage" class="text-left">
+						<img src="../assets/images/curvesBackground/mainpagePink.png" width="50%">
+					</div>
 			</td></tr><tr>
 			<td colspan=2>
 		
