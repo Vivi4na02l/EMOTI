@@ -188,4 +188,5 @@ export default {
   #nav a.router-link-exact-active {
     color: black;
   }
+
 </style>
