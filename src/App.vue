@@ -37,7 +37,7 @@
         
       </div>
 
-      <router-link to="/about">
+      <router-link to="/login">
         <button class="btn mt-3 mr-3" id="btnLoginPage"><div class="m-1">INICIAR SESSÃO</div></button>
       </router-link>
 
