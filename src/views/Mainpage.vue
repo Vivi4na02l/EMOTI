@@ -24,8 +24,8 @@
 
 					<div id="yellowContent">
 						<div>
-							<p class="mr-5" style="color: black">O autismo é parte deste mundo</p>
-							<p class="ml-5" style="color: black">e não de um mundo à parte!</p>
+							<h3 class="mr-4" style="color: black"> O <strong>autismo</strong>  é parte deste mundo</h3>
+							<h3 class="ml-5" style="color: black">e não de um mundo à parte!</h3>
 						</div>
 
 						<img src="../assets/images/mundo.png" width="20%">

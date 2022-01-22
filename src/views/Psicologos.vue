@@ -1,24 +1,23 @@
 <template>
     <div>
+        
+        <h1 class="mt-5"><br> Psicólogos</h1>
+        <div class="mb-5" id="yellowSection">
+            
+			<table><tr><td></td><td rowspan=2>
+                    
+					<img src="../assets/images/curvesBackground/BG_Psicologos.svg" width="100%">
 
-        <div class="Psicologos"> 
-            <h2>Psicólogos</h2>
-        </div>
+			</td></tr><tr>
+			<td colspan=2>
 
-        <div class="header-container">
-            <div class="wrapper">
-                <header>
-                    <div class="introJogos">
-                        <h2>"Conheces esta expressão?"</h2>
-                        <p>Neste jogo tens de adivinhar a emoção <br> associada a cada imagem que será mostrada.</p>
-                        <router-link to="/about">
-                            <button class="btn mt-3 mr-3" id="btnJogar">Jogar</button>
-                        </router-link>
-                    </div>
-                </header>
-                
-            </div>
-        </div>
+					<div id="container">
+						<p>oi</p>
+					</div>
+
+			</td></tr></table>
+		</div>
+
     </div>
 </template>
 
@@ -30,4 +29,18 @@
 
 <style lang="scss" scoped>
 
+#container{
+        
+        position: relative;
+        width: 900px;
+        height: 200px;
+        left: 210px;
+        top: -150px;
+        filter: drop-shadow(5px 4px 2px #00000030);
+        
+        
+
+        background: #fdf8db;
+        border-radius: 50px;
+    }
 </style>
