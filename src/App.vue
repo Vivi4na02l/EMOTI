@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    
     <div id="navBar">
       <div id="menuIcons">
 
@@ -14,7 +15,7 @@
         <!-- Psicólogos -->
         <div id="menuPsicologos">
           <img src="./assets/images/icons/psicologos.png" width="25px" class="ml-2 mr-4">
-          <router-link to="/about" class="mr-4">
+          <router-link to="/Psicologos" class="mr-4">
             <div class="mr-4 m-2" id="menuWords">Psicólogos</div>
           </router-link>
         </div>
@@ -56,12 +57,20 @@
     </div>
 
     <router-view/>
+
+    
+
       
   </div>
 </template>
 
 <script>
+// import Footer from './components/Footer.vue'
 export default {
+  // components:{
+  //   Footer
+    
+  // },
 	data() {
 		return {
 			divNavBar: document.querySelector('#navBar').style.height
@@ -192,4 +201,5 @@ export default {
     color: black;
   }
 
+  
 </style>

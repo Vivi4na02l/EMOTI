@@ -31,8 +31,7 @@
                             <p>Que emoção é esta?</p>
                         </div>
                         <div class="col">
-                            <img :src="randomImageEmotion(arrayRecognizeEmotion).image" width="50%">
-                            <button @click="oi(randomImageEmotion(arrayRecognizeEmotion).image)"></button>
+                            <img :src="this.randomImageEmotion(this.arrayRecognizeEmotion).image" width="50%">
                         </div>
                     </div>
 
@@ -68,9 +67,9 @@
         data() {
             return {
                 emotion: this.randomImageEmotion.emotion,
-                image: this.randomImageEmotion(this.arrayRecognizeEmotion).image,
+                image: '',
 
-                
+
             }
         },
 
@@ -96,15 +95,9 @@
                     // alert(`${this.username}'s account logged with success!`)
                     // this.$router.push({ name: "Home" });
                 } else {
-                    alert(`Username or password incorrects!`)
+                    // oi
                 }
             },
-
-            oi() {
-                // alert(this.randomImageEmotion(this.arrayRecognizeEmotion).image)
-                alert(this.image)
-                // return (this.randomImageEmotion(this.arrayRecognizeEmotion).image)
-            }
         },
     }
 </script>

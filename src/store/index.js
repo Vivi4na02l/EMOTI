@@ -13,6 +13,8 @@ export default new Vuex.Store({
           type: "admin"
         },
       ],
+    
+    loggedUser: null,
 
     jogoRecognizeEmotion: [
       {
@@ -20,7 +22,7 @@ export default new Vuex.Store({
         images: [
           {
             addedBy: "admin",
-            image: "../assets/images/jogo/emojis/alegria.svg",
+            image: "emojis/alegria.svg",
           }
         ]
       },
@@ -29,7 +31,7 @@ export default new Vuex.Store({
         images: [
           {
             addedBy: "admin",
-            image: "../assets/images/jogo/emojis/amor.svg",
+            image: "emojis/amor.svg",
           }
         ]
       },
@@ -38,7 +40,7 @@ export default new Vuex.Store({
         images: [
           {
             addedBy: "admin",
-            image: "../assets/images/jogo/emojis/cansaço.svg",
+            image: "emojis/cansaço.svg",
           }
         ]
       },
@@ -47,7 +49,7 @@ export default new Vuex.Store({
         images: [
           {
             addedBy: "admin",
-            image: "../assets/images/jogo/emojis/enojado.svg",
+            image: "emojis/enojado.svg",
           }
         ]
       },
@@ -56,7 +58,7 @@ export default new Vuex.Store({
         images: [
           {
             addedBy: "admin",
-            image: "../assets/images/jogo/emojis/espanto.svg",
+            image: "emojis/espanto.svg",
           }
         ]
       },
@@ -65,7 +67,7 @@ export default new Vuex.Store({
         images: [
           {
             addedBy: "admin",
-            image: "../assets/images/jogo/emojis/medo.svg",
+            image: "emojis/medo.svg",
           }
         ]
       },
@@ -74,7 +76,7 @@ export default new Vuex.Store({
         images: [
           {
             addedBy: "admin",
-            image: "../assets/images/jogo/emojis/tristeza.svg",
+            image: "emojis/tristeza.svg",
           }
         ]
       },
@@ -83,11 +85,13 @@ export default new Vuex.Store({
         images: [
           {
             addedBy: "admin",
-            image: "../assets/images/jogo/emojis/raiva.svg",
+            image: "emojis/raiva.svg",
           }
         ]
       }
-    ]
+    ],
+
+    randomizedRecognizeEmotion: [],
   },
   getters: {
     getjogoRecognizeEmotion: (state) => { return state.jogoRecognizeEmotion },
@@ -112,6 +116,22 @@ export default new Vuex.Store({
       state.loggedUser = null;
       localStorage.removeItem("loggedUser");
     },
+
+    // RANDOMIZED_ARRAY(state) {
+    //   // state.randomizedRecognizeEmotion = state.jogoRecognizeEmotion
+    //   let randomPosArray = []
+
+    //   for (let index = 0; index < 8; index++) {
+    //     let randomPos = Math.floor(Math.random() * (state.jogoRecognizeEmotion.length-1))
+
+    //     randomPosArray.push(randomPos)
+        
+    //     state.randomizedRecognizeEmotion.push(
+    //       {
+    //         state.jogoRecognizeEmotion[randomPos]
+    //       })
+    //   }
+    // },
   },
   actions: {
   },
