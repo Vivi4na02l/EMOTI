@@ -24,11 +24,20 @@
         <div>
             <img width="100%" src="../assets/images/curvesBackground/Group 30.png">
         </div>
+
+        <NavBar></NavBar>
+
     </div>
 </template>
 
 <script>
+import NavBar from '../components/NavBar.vue'
+
     export default {
+		components:{
+			NavBar
+		},
+
         created: function () {
             document.body.style.backgroundColor = "#CAF2F2"
         },

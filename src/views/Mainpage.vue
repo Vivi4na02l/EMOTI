@@ -121,16 +121,19 @@
 	</div>
 
 	<Footer style="background-color: #ADEACD"></Footer>
+	<NavBar></NavBar>
 	
   </div>
 </template>
 
 <script>
 	import Footer from '../components/Footer.vue'
+    import NavBar from '../components/NavBar.vue'
 
 	export default {
 		components:{
-			Footer
+			Footer,
+			NavBar
 		},
 	}
 </script>

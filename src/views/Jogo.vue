@@ -73,6 +73,8 @@
             </div>
         </div>
 
+        <NavBar></NavBar>
+
         <Footer></Footer>
 
     </div>
@@ -80,11 +82,13 @@
 
 <script>
     import Footer from '../components/Footer.vue'
+    import NavBar from '../components/NavBar.vue'
     import { mapGetters } from 'vuex';
 
     export default {
         components:{
-			Footer
+			Footer,
+            NavBar
 		},
 
         data() {

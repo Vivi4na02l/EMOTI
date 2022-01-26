@@ -56,20 +56,24 @@
             </div>
         </div>
         <div style="height: 100px; visibility: hidden;"></div>
+
+        <NavBar></NavBar>
         <Footer></Footer>        
     </div>
 </template>
 
 <script>
-import Footer from '../components/Footer.vue'
+
+    import Footer from '../components/Footer.vue'
+    import NavBar from '../components/NavBar.vue'
 
     export default {
         components:{
-            Footer  
-        },
+			Footer,
+            NavBar
+		},
     }
 
-    
 </script>
 
 <style lang="scss" scoped>
