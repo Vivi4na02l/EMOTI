@@ -19,13 +19,20 @@
             <button class="btn mt-3 mr-3" id="btnIniciar"><div class="m-1">CRIAR CONTA</div></button>
             <br><br><br><br>
         </form>
+
+        <NavBar></NavBar>
     </div>
 </template>
 
 <script>
 import { mapMutations } from 'vuex';
+import NavBar from '../components/NavBar.vue'
 
     export default {
+        components:{
+            NavBar
+		},
+
         data() {
             return {
                 username: '',

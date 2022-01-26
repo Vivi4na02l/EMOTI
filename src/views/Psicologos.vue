@@ -18,13 +18,21 @@
 			</td></tr></table>
 		</div>
 
+        <NavBar></NavBar>
+        <Footer></Footer>
     </div>
 </template>
 
 <script>
-    export default {
-        
-    }
+	import Footer from '../components/Footer.vue'
+    import NavBar from '../components/NavBar.vue'
+
+	export default {
+		components:{
+			Footer,
+			NavBar
+		},
+	}
 </script>
 
 <style lang="scss" scoped>
