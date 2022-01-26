@@ -144,6 +144,13 @@ export default new Vuex.Store({
     
     isEmotion: (state) => (username, password) => 
     state.users.some(user => user.username == username && user.password == password),
+
+    isUser: (state) => (username, password) =>
+      state.users.some(
+        (user) => user.username === username && user.password === password
+      ),
+    isUsernameAvailable: (state) => (username) => state.users.every((user) => user.username !== username),
+    getLoggedUser: (state) => state.loggedUser
   },
 
   mutations: {
