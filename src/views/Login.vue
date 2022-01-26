@@ -7,7 +7,7 @@
             <img src="../assets/images/curvesBackground/loginPinkCurve.png">
         </div>
         
-        <form>
+        <form id="formLogin">
             <div id="text">
                 <h1>Bem-vindo, junte-se a nós!</h1>
             </div>
@@ -46,7 +46,7 @@
         text-align: center;
     }
 
-    form {
+    #formLogin {
         display: flex;
         flex-direction: column;
         align-items: center;

@@ -5,7 +5,8 @@ import Mainpage from '../views/Mainpage.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 import Jogos from '../views/Jogos.vue';
-import Jogo1 from '../views/JogoRecognizeEmotion.vue';
+import Jogo from '../views/Jogo.vue';
+import JogoEdit from '../views/JogoEdit.vue';
 import Psicologos from '../views/Psicologos.vue';
 
 // import store from '../store/index';
@@ -35,9 +36,14 @@ const routes = [
 		component: Jogos,
 	},
 	{
-		path: '/Jogo1',
-		name: 'Jogo1',
-		component: Jogo1,
+		path: '/Jogo',
+		name: 'Jogo',
+		component: Jogo,
+	},
+	{
+		path: '/JogoEdit',
+		name: 'JogoEdit',
+		component: JogoEdit
 	},
 	{
 		path: '/Psicologos',

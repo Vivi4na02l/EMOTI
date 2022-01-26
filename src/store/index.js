@@ -23,6 +23,10 @@ export default new Vuex.Store({
           {
             addedBy: "admin",
             image: "emojis/alegria.svg",
+          },
+          {
+            addedBy: "admin",
+            image: "emojis/alegria2.png",
           }
         ]
       },
@@ -32,6 +36,10 @@ export default new Vuex.Store({
           {
             addedBy: "admin",
             image: "emojis/amor.svg",
+          },
+          {
+            addedBy: "admin",
+            image: "emojis/amor2.png",
           }
         ]
       },
@@ -41,6 +49,10 @@ export default new Vuex.Store({
           {
             addedBy: "admin",
             image: "emojis/cansaço.svg",
+          },
+          {
+            addedBy: "admin",
+            image: "emojis/cansaço2.png",
           }
         ]
       },
@@ -59,6 +71,10 @@ export default new Vuex.Store({
           {
             addedBy: "admin",
             image: "emojis/espanto.svg",
+          },
+          {
+            addedBy: "admin",
+            image: "emojis/espanto2.png",
           }
         ]
       },
@@ -68,15 +84,10 @@ export default new Vuex.Store({
           {
             addedBy: "admin",
             image: "emojis/medo.svg",
-          }
-        ]
-      },
-      {
-        name: "tristeza",
-        images: [
+          },
           {
             addedBy: "admin",
-            image: "emojis/tristeza.svg",
+            image: "emojis/medo2.png",
           }
         ]
       },
@@ -86,9 +97,35 @@ export default new Vuex.Store({
           {
             addedBy: "admin",
             image: "emojis/raiva.svg",
+          },
+          {
+            addedBy: "admin",
+            image: "emojis/raiva2.png",
           }
         ]
-      }
+      },
+      {
+        name: "tristeza",
+        images: [
+          {
+            addedBy: "admin",
+            image: "emojis/tristeza.svg",
+          },
+          {
+            addedBy: "admin",
+            image: "emojis/tristeza2.png",
+          }
+        ]
+      },
+      {
+        name: "vergonha",
+        images: [
+          {
+            addedBy: "admin",
+            image: "emojis/vergonha.svg",
+          }
+        ]
+      },
     ],
 
     randomizedRecognizeEmotion: [],

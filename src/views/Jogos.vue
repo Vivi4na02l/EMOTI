@@ -9,8 +9,8 @@
                     <div class="introJogos">
                         <h2>"Conheces esta expressão?"</h2>
                         <p>Neste jogo tens de adivinhar a emoção <br> associada a cada imagem que será mostrada.</p>
-                        <router-link to="/about">
-                            <button class="btn mt-3 mr-3" id="btnJogar">Jogar</button>
+                        <router-link to="/Jogo">
+                            <button class="btn mt-3 mr-3" id="btnJogar" >Jogar</button>
                         </router-link>
                     </div>
                 </header>
