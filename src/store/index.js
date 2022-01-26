@@ -179,6 +179,12 @@ export default new Vuex.Store({
       state.loggedUser = null;
       localStorage.removeItem("loggedUser");
     },
+    SET_NEW_PASSWORD(state,payload) {
+
+      state.users.find((user) => user.username == state.loggedUser.username).password = payload
+      localStorage.users = JSON.stringify(state.users);
+    },
+
 
     // RANDOMIZED_ARRAY(state) {
     //   // state.randomizedRecognizeEmotion = state.jogoRecognizeEmotion
