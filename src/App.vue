@@ -23,7 +23,7 @@
         <!-- Sobre nós -->
         <div id="menuSobreNos">
           <img src="./assets/images/icons/sobreNos.png" width="25px" class="ml-2 mr-4">
-          <router-link to="/Jogo1">
+          <router-link to="/Jogo">
             <div class="mr-4 m-2" id="menuWords">Sobre nós</div>     
           </router-link>
         </div>

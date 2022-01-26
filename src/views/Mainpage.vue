@@ -74,7 +74,9 @@
 							<div class="mt-5">
 								<h1>"Conheces esta expressão?"</h1>
 								<p style="width: 70%">Neste jogo tens de adivinhar a emoção associada a cada imagem que será mostrada. Joga todos os dias e torna-te um mestre das emoções!</p>
-								<button class="btn mt-5" id="btnPlay"><div class="my-2">JOGAR</div></button>
+								<router-link to="/Jogos" id="btnPlayLink">
+									<button class="btn mt-5" id="btnPlay"><div class="my-2">JOGAR</div></button>
+								</router-link>
 							</div>
 							
 						</div>
@@ -164,11 +166,17 @@
 		align-items: center;
 	}
 
+	#btnPlayLink {
+		width: 15%;
+
+		position: relative;
+		right: 27%;
+	}
+
 	#btnPlay {
 		font-family: Baloo_2 extrabold;
 		background-color: #29ABE2;
 		color: #FFFFFF;
-		width: 15%;
 
 		position: relative;
 		right: 27%;

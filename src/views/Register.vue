@@ -1,14 +1,24 @@
 <template>
     <div>
-        <div id="pipi">
-            <div id="criança">
-                <button id="btnCriança"></button>
+        <div class="group">
+            <div id="criança" class="col-md-3">
+                <button id="btnCriança">
+                    <img src="../assets/images/icons/personaCrianca.png" width="70%">
+                    <div class="text"><p>Criança</p></div>
+                </button>
             </div>
-            <div id="tutor">
-                <button id="btnTutor"></button>
+            <div id="tutor" class="col-md-3">
+                <button id="btnTutor">
+                    <img src="../assets/images/icons/personaTutor.png" width="70%">
+                    <div class="text"><p>Tutor</p></div>
+                    
+                </button>
             </div>
-            <div id="psicologo">
-                <button id="btnPsic"></button>
+            <div id="psicologo" class="col-md-3">
+                <button id="btnPsic">
+                    <img src="../assets/images/icons/psicologos.png" width="70%">
+                    <div class="text"><p>Psicólogo</p></div>
+                </button>
             </div>
         </div>
         <div>
@@ -32,11 +42,31 @@
     #btnCriança,#btnTutor,#btnPsic {
         width: 200px;
         height: 200px;
+        border-radius: 30px;
+        border-style: none;
+        opacity: 0.7;
+        transition: all 0.5s ease-out;
+    }
+    #btnCriança:hover,#btnTutor:hover,#btnPsic:hover {
+        opacity: 1;
+        transform: scale(1.1);
+        
+    }
+    #btnCriança > img {
+        margin-top: 20px;
     }
     
-    #pipi {
+    .group {
         display: flex;
-        justify-content: space-between;
-        padding-top: 200px;
+        /* justify-content: space-between; */
+        padding-top: 150px;
+        border-right: none;
+        justify-content: center;
     }
+    .text {
+        display: flex;
+        font-weight: bold;
+        justify-content: center;
+    }
+
 </style>

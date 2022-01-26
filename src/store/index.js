@@ -27,7 +27,11 @@ export default new Vuex.Store({
         images: [
           {
             addedBy: "admin",
-            image: "emojis/alegria.svg",
+            image: "imagens/emojis/alegria.svg",
+          },
+          {
+            addedBy: "admin",
+            image: "imagens/emojis/alegria2.png",
           }
         ]
       },
@@ -36,7 +40,11 @@ export default new Vuex.Store({
         images: [
           {
             addedBy: "admin",
-            image: "emojis/amor.svg",
+            image: "imagens/emojis/amor.svg",
+          },
+          {
+            addedBy: "admin",
+            image: "imagens/emojis/amor2.png",
           }
         ]
       },
@@ -45,7 +53,11 @@ export default new Vuex.Store({
         images: [
           {
             addedBy: "admin",
-            image: "emojis/cansaço.svg",
+            image: "imagens/emojis/cansaço.svg",
+          },
+          {
+            addedBy: "admin",
+            image: "imagens/emojis/cansaço2.png",
           }
         ]
       },
@@ -54,7 +66,7 @@ export default new Vuex.Store({
         images: [
           {
             addedBy: "admin",
-            image: "emojis/enojado.svg",
+            image: "imagens/emojis/enojado.svg",
           }
         ]
       },
@@ -63,7 +75,11 @@ export default new Vuex.Store({
         images: [
           {
             addedBy: "admin",
-            image: "emojis/espanto.svg",
+            image: "imagens/emojis/espanto.svg",
+          },
+          {
+            addedBy: "admin",
+            image: "imagens/emojis/espanto2.png",
           }
         ]
       },
@@ -72,16 +88,11 @@ export default new Vuex.Store({
         images: [
           {
             addedBy: "admin",
-            image: "emojis/medo.svg",
-          }
-        ]
-      },
-      {
-        name: "tristeza",
-        images: [
+            image: "imagens/emojis/medo.svg",
+          },
           {
             addedBy: "admin",
-            image: "emojis/tristeza.svg",
+            image: "imagens/emojis/medo2.png",
           }
         ]
       },
@@ -90,14 +101,41 @@ export default new Vuex.Store({
         images: [
           {
             addedBy: "admin",
-            image: "emojis/raiva.svg",
+            image: "imagens/emojis/raiva.svg",
+          },
+          {
+            addedBy: "admin",
+            image: "imagens/emojis/raiva2.png",
           }
         ]
-      }
+      },
+      {
+        name: "tristeza",
+        images: [
+          {
+            addedBy: "admin",
+            image: "imagens/emojis/tristeza.svg",
+          },
+          {
+            addedBy: "admin",
+            image: "imagens/emojis/tristeza2.png",
+          }
+        ]
+      },
+      {
+        name: "vergonha",
+        images: [
+          {
+            addedBy: "admin",
+            image: "imagens/emojis/vergonha.svg",
+          }
+        ]
+      },
     ],
 
     randomizedRecognizeEmotion: [],
   },
+
   getters: {
     getjogoRecognizeEmotion: (state) => { return state.jogoRecognizeEmotion },
 
@@ -106,8 +144,8 @@ export default new Vuex.Store({
     
     isEmotion: (state) => (username, password) => 
     state.users.some(user => user.username == username && user.password == password),
-
   },
+
   mutations: {
     SET_LOGGED_USER(state, payload) {
       state.loggedUser = state.users.find((user) => user.username === payload);
@@ -137,6 +175,8 @@ export default new Vuex.Store({
     //       })
     //   }
     // },
+
+    MUTATE_ARRAY_EMOTIONS: (state, payload) => state.jogoRecognizeEmotion.push(payload),
   },
   actions: {
   },

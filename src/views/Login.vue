@@ -7,7 +7,7 @@
             <img src="../assets/images/curvesBackground/loginPinkCurve.png">
         </div>
         
-        <form @submit.prevent="login">
+        <form  id="formLogin" @submit.prevent="login">
             <div id="text">
                 <h1>Bem-vindo, junte-se a nós!</h1>
             </div>
@@ -56,7 +56,7 @@ import { mapMutations } from 'vuex';
         text-align: center;
     }
 
-    form {
+    #formLogin {
         display: flex;
         flex-direction: column;
         align-items: center;
