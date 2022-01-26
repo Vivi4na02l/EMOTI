@@ -95,12 +95,7 @@
 
                 level: -1,
                 currentEmotionImage: '',
-                filteredEmotions: [
-                    // {
-                    //      emotion: pos.name,
-                    //      checked: true
-                    // }
-                ],
+                filteredEmotions: [],
                 randomEmotionsImages: [],
                 randomEmotionsSorted: [],
 
@@ -259,6 +254,8 @@
                 if (nbrImages < 8) {
                     this.maxLevel = nbrImages
                     alert(this.maxLevel)
+                } else {
+                    this.maxLevel = 8
                 }
             }
         },
