@@ -42,6 +42,7 @@
                 </td>
             </tr>
             </table>
+        <NavBar></NavBar>
         <Footer></Footer> 
     </div>
 </template>
@@ -53,7 +54,7 @@
     export default {
         components:{
             Footer,
-            NavBar
+            NavBar  
         },
     }
 </script>
