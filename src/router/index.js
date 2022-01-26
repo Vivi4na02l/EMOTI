@@ -8,6 +8,7 @@ import Edit from '../views/Edit.vue';
 import Jogos from '../views/Jogos.vue';
 import Jogo1 from '../views/JogoRecognizeEmotion.vue';
 import Psicologos from '../views/Psicologos.vue';
+import SuporteFamiliar from '../views/SuporteFamiliar.vue';
 
 // import store from '../store/index';
 
@@ -49,6 +50,11 @@ const routes = [
 		path: '/Psicologos',
 		name: 'Psicologos',
 		component: Psicologos,
+	},
+	{
+		path: '/SuporteFamiliar',
+		name: 'SuporteFamiliar',
+		component: SuporteFamiliar,
 	},
 	// {
 	// 	path: '/gifts',
