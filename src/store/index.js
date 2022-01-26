@@ -156,14 +156,12 @@ export default new Vuex.Store({
 
     // getRandomImageEmotion: (state) => (emotion, image) => 
     // { return {emotion: state.jogoRecognizeEmotion[emotion].name, image: state.jogoRecognizeEmotion[emotion].images[image].image } },
-    
-    isUser: (state) => (username, password) => 
-    state.users.some(user => user.username == username && user.password == password),
 
     isUser: (state) => (username, password) =>
       state.users.some(
         (user) => user.username === username && user.password === password
-      ),
+    ),
+
     isUsernameAvailable: (state) => (username) => state.users.every((user) => user.username !== username),
     getLoggedUser: (state) => state.loggedUser
   },
