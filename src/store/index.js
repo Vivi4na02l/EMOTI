@@ -8,10 +8,15 @@ export default new Vuex.Store({
     users: localStorage.users? JSON.parse(localStorage.users) :
       [
         {
-          username: "admin",
-          password: "admin",
+          username: "Admin",
+          password: "Esmad_2122",
           type: "admin"
         },
+        {
+          username: "User",
+          password: "Esmad_2122",
+          type: "user"
+        }
       ],
     
     loggedUser: null,
@@ -130,10 +135,7 @@ export default new Vuex.Store({
 
     randomizedRecognizeEmotion: [],
   },
-
   getters: {
-    loggedUser: state => state.loggedUser,
-
     getjogoRecognizeEmotion: (state) => { return state.jogoRecognizeEmotion },
 
     getRandomImageEmotion: (state) => (emotion, image) => 

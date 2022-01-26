@@ -37,9 +37,12 @@
         </div>
         
       </div>
-
-      <router-link to="/login">
+  
+      <router-link to="/login" v-if="!this.$store.state.loggedUser">
         <button class="btn mt-3 mr-3" id="btnLoginPage"><div class="m-1">INICIAR SESSÃO</div></button>
+      </router-link>
+      <router-link to="/edit" v-else>
+        <button class="btn mt-3 mr-3" id="btnLoginPage"><div class="m-1">EDITAR PERFIL</div></button>
       </router-link>
 
     </div>

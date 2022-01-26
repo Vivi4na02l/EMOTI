@@ -4,6 +4,7 @@ import Mainpage from '../views/Mainpage.vue';
 // import Register from '../views/Register.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
+import Edit from '../views/Edit.vue';
 import Jogos from '../views/Jogos.vue';
 import Jogo from '../views/Jogo.vue';
 import JogoEdit from '../views/JogoEdit.vue';
@@ -29,6 +30,11 @@ const routes = [
 		path: '/register',
 		name: 'Register',
 		component: Register
+	},
+	{
+		path: '/edit',
+		name: 'Edit',
+		component: Edit
 	},
 	{
 		path: '/Jogos',

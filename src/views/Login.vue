@@ -7,7 +7,7 @@
             <img src="../assets/images/curvesBackground/loginPinkCurve.png">
         </div>
         
-        <form id="formLogin">
+        <form  id="formLogin" @submit.prevent="login">
             <div id="text">
                 <h1>Bem-vindo, junte-se a nós!</h1>
             </div>
@@ -15,7 +15,7 @@
             <input type="text" id="txtUsername" placeholder="nome de utilizador" v-model="username" required />
             <br>
             <input type="password" id="txtPassword" placeholder="palavra-passe" v-model="password" required />
-            <button class="btn mt-3 mr-3" id="btnIniciar"><div class="m-1">INICIAR SESSÃO</div></button>
+            <input type="submit" value="INICIAR SESSÃO" class="btn mt-3 mr-3" id="btnIniciar">
             <button class="btn mt-3 mr-3" id="btnIniciar"><div class="m-1">CRIAR CONTA</div></button>
             <br><br><br><br>
         </form>
@@ -23,11 +23,21 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
     export default {
         data() {
             return {
                 username: '',
                 password: ''
+            }
+        },
+        methods: {
+            ...mapMutations(['SET_LOGGED_USER']),
+
+            login() {
+                this.$router.push({name: 'Mainpage'})
+                this.SET_LOGGED_USER(this.username)
             }
         },
     }
@@ -64,6 +74,9 @@
     }
     input {
         width: 300px;
+    }
+    input[type="submit"] {
+        width: 150px;
     }
     ::placeholder {
         position: absolute;
