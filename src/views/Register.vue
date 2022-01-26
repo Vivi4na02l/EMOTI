@@ -192,16 +192,18 @@
         <div>
             <img width="100%" src="../assets/images/curvesBackground/Group 30.png">
         </div>
+
+        <NavBar></NavBar>
+
     </div>
 </template>
 
 <script>
-    // import RegisterCrianca from '../components/RegisterCriança.vue'
-
+    import NavBar from '../components/NavBar.vue'
     export default {
-        // components: {
-        //     RegisterCrianca,
-        // },
+        components: {
+            NavBar,
+         },
         data() {
             return {
                 form: {
@@ -303,7 +305,7 @@
         display: flex;
         justify-content: center;
     }
-    input, select {
+    .container input, select {
         width: 80px;
         height: 35px;
         border: solid #62AFAF 1.5px;

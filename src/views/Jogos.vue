@@ -13,12 +13,20 @@
                             <button class="btn mt-3 mr-3" id="btnJogar" >Jogar</button>
                         </router-link>
                     </div>
+                    <!-- <div class="col mt-5 mr-5 align-self-center" id="container2">
+					<img src="../assets/images/fotoFeliz.png" width="100%">
+                
+                    </div> -->
+                    
                 </header>
+                
                 
             </div>
         </div>
+        
 
         <div class="explanation-container">
+            
             <div class="wrapper">
 
                 <div id="gm">
@@ -48,20 +56,24 @@
             </div>
         </div>
         <div style="height: 100px; visibility: hidden;"></div>
+
+        <NavBar></NavBar>
         <Footer></Footer>        
     </div>
 </template>
 
 <script>
-import Footer from '../components/Footer.vue'
+
+    import Footer from '../components/Footer.vue'
+    import NavBar from '../components/NavBar.vue'
 
     export default {
         components:{
-            Footer  
-        },
+			Footer,
+            NavBar
+		},
     }
 
-    
 </script>
 
 <style lang="scss" scoped>
@@ -69,6 +81,7 @@ import Footer from '../components/Footer.vue'
     // Background jogos
     .header-container {
         background-image: url('../assets/images/curvesBackground/BG_Jogos.svg');
+        
         background-size: contain;
         background-repeat: no-repeat;
         width: 100%;
@@ -78,6 +91,7 @@ import Footer from '../components/Footer.vue'
 
     // Texto Intro
     .wrapper{
+        
         width: 1200px;
         margin: 0 auto;
     }

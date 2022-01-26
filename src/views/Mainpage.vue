@@ -67,7 +67,7 @@
 
 					<div id="blueContent" class="row">
 						<div class="col">
-							IMAGEMMMMMMMMMM HERE
+							<img src="../assets/images/jogo.png" class="col-6">
 						</div>
 
 						<div class="col">
@@ -95,42 +95,55 @@
 			</div>
 
 			<div id="greenContent" class="row">
-				<div class="col ml-5 mt-5">
 
+				<router-link to="/Jogos" class="col ml-5 mt-5">
+					<div id="divLinkImages" class="mb-3">
+						<img src="../assets/images/icons/jogos.png" width="30%" class="my-5">
+					</div>
 					<p id="title">Jogos</p>
 					<p>Venha conhecer os jogos direcionados para crianças autistas</p>
-				</div>
-				<div class="col mt-5">
-					
+				</router-link>
+
+				<router-link to="/SuporteFamiliar" class="col mt-5">
+					<div id="divLinkImages" class="mb-3">
+						<img src="../assets/images/icons/suporteFamiliar.png" width="30%" class="my-5">
+					</div>
 					<p id="title">Suporte familiar</p>
 					<p style="width: 90%;">O apoio familiar é crucial no desenvolvimento infantil, tire dúvidas e saiba como ter influência positiva na vida das crianças com PEA</p>
-				</div>
-				<div class="col mt-5">
-					
+				</router-link>
+				<router-link to="/Psicologos" class="col mt-5">
+					<div id="divLinkImages" class="mb-3">
+						<img src="../assets/images/icons/psicologos.png" width="30%" class="my-5">
+					</div>
 					<p id="title">Psicólogos</p>
 					<p>Ao contar com um profissional já é meio caminho andado. Conheça os psicólogos disponíveis</p>
-				</div>
-				<div class="col mr-5 mt-5">
-					
+				</router-link>
+				<router-link to="/sobreNos" class="col mt-5">
+					<div id="divLinkImages" class="mb-3">
+						<img src="../assets/images/icons/sobreNos.png" width="30%" class="my-5">
+					</div>
 					<p id="title">Sobre nós</p>
 					<p>Descubra quem é a equipa EMOTI!</p>
-				</div>
+				</router-link>
 			</div>
 		</div>
 
 	</div>
 
 	<Footer style="background-color: #ADEACD"></Footer>
+	<NavBar></NavBar>
 	
   </div>
 </template>
 
 <script>
 	import Footer from '../components/Footer.vue'
+    import NavBar from '../components/NavBar.vue'
 
 	export default {
 		components:{
-			Footer
+			Footer,
+			NavBar
 		},
 	}
 </script>
@@ -207,5 +220,11 @@
 	} #title {
 		color: #28A167;
 		font-size: 25px;
+	}
+
+	#divLinkImages {
+		background-color: #ffffffdc;
+		width: 70%;
+		border-radius: 20px;
 	}
 </style>

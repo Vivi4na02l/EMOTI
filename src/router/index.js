@@ -9,6 +9,8 @@ import Jogos from '../views/Jogos.vue';
 import Jogo from '../views/Jogo.vue';
 import JogoEdit from '../views/JogoEdit.vue';
 import Psicologos from '../views/Psicologos.vue';
+import SuporteFamiliar from '../views/SuporteFamiliar.vue';
+import SobreNos from '../views/SobreNos.vue';
 
 // import store from '../store/index';
 
@@ -55,6 +57,16 @@ const routes = [
 		path: '/Psicologos',
 		name: 'Psicologos',
 		component: Psicologos,
+	},
+	{
+		path: '/SuporteFamiliar',
+		name: 'SuporteFamiliar',
+		component: SuporteFamiliar,
+	},
+	{
+		path: '/SobreNos',
+		name: 'SobreNos',
+		component: SobreNos,
 	},
 	// {
 	// 	path: '/gifts',

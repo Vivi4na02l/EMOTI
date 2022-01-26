@@ -73,6 +73,8 @@
             </div>
         </div>
 
+        <NavBar></NavBar>
+
         <Footer></Footer>
 
     </div>
@@ -80,11 +82,13 @@
 
 <script>
     import Footer from '../components/Footer.vue'
+    import NavBar from '../components/NavBar.vue'
     import { mapGetters } from 'vuex';
 
     export default {
         components:{
-			Footer
+			Footer,
+            NavBar
 		},
 
         data() {
@@ -95,12 +99,7 @@
 
                 level: -1,
                 currentEmotionImage: '',
-                filteredEmotions: [
-                    // {
-                    //      emotion: pos.name,
-                    //      checked: true
-                    // }
-                ],
+                filteredEmotions: [],
                 randomEmotionsImages: [],
                 randomEmotionsSorted: [],
 
@@ -259,6 +258,8 @@
                 if (nbrImages < 8) {
                     this.maxLevel = nbrImages
                     alert(this.maxLevel)
+                } else {
+                    this.maxLevel = 8
                 }
             }
         },
