@@ -12,16 +12,20 @@
 					<img src="../assets/images/SuporteFamiliar/introSuporte.svg" width="100%">
                 </div>
 			</td></tr></table>
+
+        <NavBar></NavBar>
         <Footer></Footer> 
     </div>
 </template>
 
 <script>
     import Footer from '../components/Footer.vue'
+    import NavBar from '../components/NavBar.vue'
 
     export default {
         components:{
-            Footer  
+            Footer,
+            NavBar
         },
     }
 </script>

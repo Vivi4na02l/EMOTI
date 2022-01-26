@@ -7,7 +7,7 @@
                 <!-- Suporte Familiar -->
                 <div id="menuSuporteFamiliar">
                     <img src="../assets/images/icons/suporteFamiliar.png" width="25px" class="ml-2 mr-4">
-                    <router-link to="/">
+                    <router-link to="/SuporteFamiliar">
                         <div class="mr-4 m-2" id="menuWords">Suporte familiar</div>
                     </router-link>
                 </div>
