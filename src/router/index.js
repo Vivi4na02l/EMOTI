@@ -4,13 +4,14 @@ import Mainpage from '../views/Mainpage.vue';
 // import Register from '../views/Register.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
-import Edit from '../views/Edit.vue';
+import EditarPerfil from '../views/EditarPerfil.vue';
 import Jogos from '../views/Jogos.vue';
 import Jogo from '../views/Jogo.vue';
 import JogoEdit from '../views/JogoEdit.vue';
 import Psicologos from '../views/Psicologos.vue';
 import SuporteFamiliar from '../views/SuporteFamiliar.vue';
 import SobreNos from '../views/SobreNos.vue';
+import SaibaMais from '../views/SaibaMais.vue';
 
 // import store from '../store/index';
 
@@ -34,9 +35,9 @@ const routes = [
 		component: Register
 	},
 	{
-		path: '/edit',
-		name: 'Edit',
-		component: Edit
+		path: '/editarPerfil',
+		name: 'EditarPerfil',
+		component: EditarPerfil
 	},
 	{
 		path: '/Jogos',
@@ -62,6 +63,11 @@ const routes = [
 		path: '/SuporteFamiliar',
 		name: 'SuporteFamiliar',
 		component: SuporteFamiliar,
+	},
+	{
+		path: '/SaibaMais',
+		name: 'SaibaMais',
+		component: SaibaMais,
 	},
 	{
 		path: '/SobreNos',

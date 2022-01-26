@@ -133,16 +133,31 @@ export default new Vuex.Store({
       },
     ],
 
-    randomizedRecognizeEmotion: [],
+    arrayFAQ: [
+      {
+        approved: true,
+        question: "Como posso saber se o caso do/da meu/minha filho/filha é genético? É possível saber de que lado da família vem o autismo?",
+        answer: "Se o seu filho tem autismo e está interessado em testes genéticos, peça ao médico do seu filho que o encaminhe para um geneticista médico. Depois de conduzir um histórico familiar detalhado e um exame físico, o médico pode recomendar um teste genético, que geralmente é um exame de sangue e às vezes um exame de urina."
+      },
+      {
+        approved: true,
+        question: "Como é que o autismo é diagnosticado? Existe um teste para isto?",
+        answer: "Ainda não há marcadores biológicos e exames específicos para autismo, mas alguns exames, como o cariótipo com pesquisa de X frágil, o eletroencefalograma (EEG), a ressonância magnética nuclear (RNM), os erros inatos do metabolismo, o teste do pezinho, as sorologias para sífilis, rubéola e toxoplasmose; a audiometria e testes neuropsicológicos podem ser necessários para investigar as causas e doenças associadas."
+      }
+    ]
+
+    // randomizedRecognizeEmotion: [],
   },
 
   getters: {
     getjogoRecognizeEmotion: (state) => { return state.jogoRecognizeEmotion },
 
-    getRandomImageEmotion: (state) => (emotion, image) => 
-    { return {emotion: state.jogoRecognizeEmotion[emotion].name, image: state.jogoRecognizeEmotion[emotion].images[image].image } },
+    getarrayFAQ: (state) => { return state.arrayFAQ },
+
+    // getRandomImageEmotion: (state) => (emotion, image) => 
+    // { return {emotion: state.jogoRecognizeEmotion[emotion].name, image: state.jogoRecognizeEmotion[emotion].images[image].image } },
     
-    isEmotion: (state) => (username, password) => 
+    isUser: (state) => (username, password) => 
     state.users.some(user => user.username == username && user.password == password),
   },
 
@@ -177,6 +192,12 @@ export default new Vuex.Store({
     // },
 
     MUTATE_ARRAY_EMOTIONS: (state, payload) => state.jogoRecognizeEmotion.push(payload),
+
+    MUTATE_ARRAY_QUESTIONS: (state, payload) => state.arrayFAQ.push({
+        approved: false,
+        question: payload,
+        answer: ''
+    }),
   },
   actions: {
   },
