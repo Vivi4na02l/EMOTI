@@ -16,7 +16,7 @@
             <br>
             <input type="password" id="txtPassword" placeholder="palavra-passe" v-model="password" required />
             <input type="submit" value="INICIAR SESSÃO" class="btn mt-3 mr-3" id="btnIniciar">
-            <button class="btn mt-3 mr-3" id="btnIniciar"><div class="m-1">CRIAR CONTA</div></button>
+            <button type="button" class="btn mt-3 mr-3" id="btnIniciar" @click="$router.push({name: 'Register'})"><div class="m-1">CRIAR CONTA</div></button>
             <br><br><br><br>
         </form>
     </div>
