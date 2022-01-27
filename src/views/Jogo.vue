@@ -89,6 +89,7 @@
 <script>
     import Footer from '../components/Footer.vue'
     import NavBar from '../components/NavBar.vue'
+    import { mapMutations } from 'vuex';
     import { mapGetters } from 'vuex';
 
     export default {
@@ -140,6 +141,8 @@
         },
             
         methods: {
+            ...mapMutations(['SET_LOGGED_USER']),
+
             imagePerLevel() {
                 if (this.level != this.maxLevel) {
                     this.level = this.level + 1
@@ -227,13 +230,14 @@
                 if (btnEmotion == this.currentEmotionImage.emotion) {
                     if (this.loggedUser != null) {
                         if (this.loggedUser.type == 'crianca' ) {
-                            this.$store.commit("MUTATE_USER_ANSWERS", 'right')
+                            this.$store.commit("MUTATE_USER_ANSWERS", {emotion: this.currentEmotionImage.emotion, answer: 'right'})
+                            this.SET_LOGGED_USER(this.loggedUser.username)
                         }
                     }
                     this.imagePerLevel()
                 } else {
                     if (this.loggedUser != null) {
-                        this.$store.commit("MUTATE_USER_ANSWERS", 'wrong')
+                        this.$store.commit("MUTATE_USER_ANSWERS", {emotion: this.currentEmotionImage.emotion, answer: 'wrong'})
                         this.wrong += 1
                     }
                 }
@@ -281,7 +285,7 @@
 
             reset() {
                 this.level = -1
-                
+
                 this.changeMaxLevel()
 
                 this.randomEmotionsImages = []

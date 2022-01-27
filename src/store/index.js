@@ -145,17 +145,12 @@ export default new Vuex.Store({
         answer: "Ainda não há marcadores biológicos e exames específicos para autismo, mas alguns exames, como o cariótipo com pesquisa de X frágil, o eletroencefalograma (EEG), a ressonância magnética nuclear (RNM), os erros inatos do metabolismo, o teste do pezinho, as sorologias para sífilis, rubéola e toxoplasmose; a audiometria e testes neuropsicológicos podem ser necessários para investigar as causas e doenças associadas."
       }
     ]
-
-    // randomizedRecognizeEmotion: [],
   },
 
   getters: {
     getjogoRecognizeEmotion: (state) => { return state.jogoRecognizeEmotion },
     
     getarrayFAQ: (state) => { return state.arrayFAQ },
-
-    // getRandomImageEmotion: (state) => (emotion, image) => 
-    // { return {emotion: state.jogoRecognizeEmotion[emotion].name, image: state.jogoRecognizeEmotion[emotion].images[image].image } },
 
     isUser: (state) => (username, password) =>
       state.users.some(
@@ -180,42 +175,44 @@ export default new Vuex.Store({
       localStorage.removeItem("loggedUser");
     },
     SET_NEW_PASSWORD(state,payload) {
-
       state.users.find((user) => user.username == state.loggedUser.username).password = payload
       localStorage.users = JSON.stringify(state.users);
     },
 
-
-    // RANDOMIZED_ARRAY(state) {
-    //   // state.randomizedRecognizeEmotion = state.jogoRecognizeEmotion
-    //   let randomPosArray = []
-
-    //   for (let index = 0; index < 8; index++) {
-    //     let randomPos = Math.floor(Math.random() * (state.jogoRecognizeEmotion.length-1))
-
-    //     randomPosArray.push(randomPos)
-        
-    //     state.randomizedRecognizeEmotion.push(
-    //       {
-    //         state.jogoRecognizeEmotion[randomPos]
-    //       })
-    //   }
-    // },
-
-    MUTATE_ARRAY_EMOTIONS: (state, payload) => state.jogoRecognizeEmotion.push(payload),
+    MUTATE_ARRAY_EMOTIONS(state, payload) {
+      state.jogoRecognizeEmotion.push(payload)
+      
+      if (state.users.find(pos => pos.type == 'crianca')) {
+        state.users.filter(pos => pos.type == 'crianca').game.push({
+          emotion: payload.emotion,
+          right: 0,
+          wrong: 0
+        })
+      }
+    },
 
     MUTATE_ARRAY_QUESTIONS: (state, payload) => state.arrayFAQ.push({
         approved: false,
         question: payload,
         answer: ''
     }),
+
     MUTATE_USER_ANSWERS(state, payload) {
-      if (payload == 'right') {
-        state.users.find(pos => pos.username == state.loggedUser.username).right++
+      if (state.loggedUser.type == 'crianca') {
+        if (payload.answer == 'right') {
+          state.users.find((user) => user.username == state.loggedUser.username).game
+                    .find((pos) => pos.emotion == payload.emotion)
+                    .right++
+        }
+
+        if (payload.answer == 'wrong') {
+          state.users.find((user) => user.username == state.loggedUser.username).game
+                    .find((pos) => pos.emotion == payload.emotion)
+                    .wrong++
+        }
       }
-      if (payload == 'wrong') {
-        state.users.find(pos => pos.username == state.loggedUser.username).wrong++
-      }
+
+      localStorage.users = JSON.stringify(state.users);
     },
   },
   actions: {

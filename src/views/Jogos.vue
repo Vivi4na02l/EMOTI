@@ -73,19 +73,6 @@
 </script>
 
 <style lang="scss" scoped>
-
-    // Background jogos
-    // .header-container {
-    //     background-image: url('../assets/images/curvesBackground/BG_Jogos.svg');
-        
-    //     background-size: contain;
-    //     background-repeat: no-repeat;
-    //     width: 100%;
-    //     height: 640px;
-    
-    // }
-
-    // Texto Intro
     .wrapper{
         
         width: 1200px;

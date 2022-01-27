@@ -219,7 +219,12 @@
             document.body.style.backgroundColor = null;
         },
         computed: {
-            ...mapGetters(['isUsernameAvailable'])
+            ...mapGetters(['isUsernameAvailable']),
+            
+            ...mapGetters({
+                arrayRecognizeEmotion: 'getjogoRecognizeEmotion',
+                loggedUser: 'getLoggedUser',
+            }),
         },
         methods: {
             showCriançaForm() {
@@ -253,8 +258,15 @@
                     this.form.type = payload
 
                     if (payload == 'crianca') {
-                        this.form.right = 0
-                        this.form.wrong = 0
+                        this.form.game = []
+
+                        for (const emotion of this.arrayRecognizeEmotion) {
+                            this.form.game.push({
+                                emotion: emotion.name,
+                                right: 0,
+                                wrong: 0
+                            })
+                        }
                     }
 
                     this.SET_NEW_USER(this.form)
