@@ -3,7 +3,7 @@
         <div>
             <img src="../assets/images/curvesBackground/Group 29.png" width="100%">
         </div>
-        <div class="formUpdate">
+        <div class=" row formUpdate">
                 <div class="col-sm-5">
                     <form @submit.prevent="updatePassword()">
                         <button style="border: none;background-color: transparent">
@@ -27,7 +27,14 @@
                 <div v-else>
                     <h1>adeus</h1>
                 </div>
+                <div class="col-5 mt-5 progresso">
+                    <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div> <br>
+        
+              </div>
         </div>
+        
         <NavBar></NavBar>
         <Footer></Footer>
     </div>
