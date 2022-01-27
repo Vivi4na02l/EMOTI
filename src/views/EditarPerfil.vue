@@ -29,7 +29,7 @@
                         <div class="mt-5">
                             <div style="display: flex; flex-direction: row;">
                                 <p class="mr-2">{{emotion.emotion}}: </p>
-                                <p v-if="emotion.right != 0 || emotion.wrong != 0"> {{( (emotion.right) / (emotion.right+emotion.wrong) )*100}}%</p>
+                                <p v-if="emotion.right != 0 || emotion.wrong != 0"> {{Math.floor(( (emotion.right) / (emotion.right+emotion.wrong) )*100)}}%</p>
                                 <p v-else> 0%</p>
                             </div>
                             <div class="progress">

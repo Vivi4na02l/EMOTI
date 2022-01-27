@@ -15,8 +15,12 @@
 
 					<div class="row">
 						<div class="col mb-5" id="footerBtns">
-							<button class="btn mr-3" id="btnFooterLogin"><div class="my-1 mx-2">LOGIN</div></button>
-							<button class="btn mr-3" id="btnFooterRegister"><div class="my-1 mx-2">REGISTER</div></button>
+							<router-link to="/Login">
+								<button class="btn mr-3" id="btnFooterLogin"><div class="my-1 mx-2">LOGIN</div></button>
+							</router-link>
+							<router-link to="/Register">
+								<button class="btn mr-3" id="btnFooterRegister"><div class="my-1 mx-2">REGISTER</div></button>
+							</router-link>
 						</div>
 						<div class="col"></div>
 
@@ -25,29 +29,29 @@
 						<div class="col">
 							<p id="linkTitle" style="display: inline;">EQUIPA </p>
 							<p style="display: inline;font-family: Pacifico; font-size: 15px;"> EMOTI</p>
-							<router-link to="/about">
+							<router-link to="/SobreNos">
 								<p class="mt-3">﹥Sobre nós</p>
 							</router-link>
 						</div>
 						<div class="col">
 							<p id="linkTitle">TUTORES</p>
-							<router-link to="/about">
+							<router-link to="/SaibaMais">
 								<p>﹥FAQ</p>
 							</router-link>
-							<router-link to="/about">
+							<router-link to="/SuporteFamiliar">
 								<p>﹥Suporte Familiar</p>
 							</router-link>
 						</div>
 						<div class="col">
 							<p id="linkTitle">CRIANÇAS</p>
-							<router-link to="/about">
+							<router-link to="/Jogos">
 								<p>﹥Jogos</p>
 							</router-link>
 						</div>
 						<div class="col">
 							<p id="linkTitle">PROFISSIONAIS</p>
-							<router-link to="/about">
-								<p>﹥FAQ</p>
+							<router-link to="/Psicologos">
+								<p>﹥Psicólogos</p>
 							</router-link>
 						</div>
 					</div>

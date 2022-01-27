@@ -20,8 +20,8 @@ export default new Vuex.Store({
       ],
     
     loggedUser: null,
-
-    jogoRecognizeEmotion: [
+    
+    jogoRecognizeEmotion: localStorage.arrayEmotions? JSON.parse(localStorage.arrayEmotions) : [
       {
         name: "alegria",
         images: [
@@ -189,6 +189,16 @@ export default new Vuex.Store({
           wrong: 0
         })
       }
+
+      localStorage.arrayEmotions = JSON.stringify(state.jogoRecognizeEmotion);
+    },
+
+    MUTATE_EMOTION(state, payload) {
+      for (const image of payload.images) {
+        state.jogoRecognizeEmotion.find(pos => pos.name == payload.emotion).images.push(image)
+      }
+
+      localStorage.arrayEmotions = JSON.stringify(state.jogoRecognizeEmotion);
     },
 
     MUTATE_ARRAY_QUESTIONS: (state, payload) => state.arrayFAQ.push({

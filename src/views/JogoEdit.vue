@@ -36,6 +36,11 @@
                         </button>
 
                         <div id="divImages"> <!-- class="row row-cols-3" -->
+                            
+                            <button class="mx-3 mt-5 mb-2 col-3 btn" id="btnAddImage" @click="openDialogAddImage = true">
+                                <h1>+</h1>
+                            </button>
+
                             <img v-for="(image, index) in this.getSelectedImgs()" :key="index" :src="image.image" class="mx-3 mt-5 mb-2 col-3" style="background-color: transparent"
                                  data-toggle="tooltip" data-placement="top" title="Clique para eliminar a imagem!">
                         </div>
@@ -113,6 +118,32 @@
 
                     <br>
             </dialog>
+
+            <dialog :open="openDialogAddImage" class="mt-5" id="dialogAddEmotion" style="width:50%">
+                <button type="button" class="close" @click="openDialogAddImage = false">&times;</button><br><br>
+                    <form @submit.prevent="addImage()">
+                        <div class="mt-2">
+
+                            <label for="urlImage">Link imagem: </label>
+
+                            <span v-for="(image, index) in newImagesToEmotion" :key="index">
+                                <!-- Meramente para visual: -->
+                                <br v-if="index >= 1">
+                                <label v-if="index >= 1" style="visibility: hidden">Link imagem: </label>
+
+                                <img :src="image.image" class="col-1">
+                                <input type="url" id="urlImage" v-model="image.image" class="mr-2" required>
+                                <button type="button" @click="addNewImageToEmotion(image.image)" :disabled="index + 1 != newImagesToEmotion.length" class="btn" id="btnPlus">[ + ]</button>
+                                <br><br>
+                            </span>
+
+                        </div>
+
+                        <button class="btn" type="submit" id="btnSubmit">Adicionar emoção</button>
+                    </form>
+
+                    <br>
+            </dialog>
         </div>
 
         <NavBar></NavBar>
@@ -135,6 +166,7 @@
         data() {
             return {
                 openDialogAddEmotion: false,
+                openDialogAddImage: false,
 
                 selectedEmotion: '',
 
@@ -143,6 +175,10 @@
                 },
 
                 newEmotionImages: [
+                    { addedBy: 'user', image: 'imagens/jogo/imagemDefault.png' },
+                ],
+
+                newImagesToEmotion: [
                     { addedBy: 'user', image: 'imagens/jogo/imagemDefault.png' },
                 ],
             }
@@ -186,7 +222,19 @@
                 if (this.arrayRecognizeEmotion.find(pos => pos.name == this.selectedEmotion)) {
                     return this.arrayRecognizeEmotion.find(pos => pos.name == this.selectedEmotion).images
                 }
-            }
+            },
+
+            addNewImageToEmotion(image) {
+                if (image == 'imagens/jogo/imagemDefault.png') {
+                    alert('Imagem inválida! Insire um url.')
+                } else {
+                    this.newImagesToEmotion.push({ addedBy: 'user', image: 'imagens/jogo/imagemDefault.png' })
+                }
+            },
+
+            addImage() {
+                this.$store.commit("MUTATE_EMOTION", {emotion: this.selectedEmotion, images: this.newImagesToEmotion})
+            },
         },
     }
 </script>
@@ -274,5 +322,10 @@
     } #btnPlus:hover, #btnSubmit:hover {
         background-color: #29ABE2;
         color: #FFFFFF;
+    }
+
+    #btnAddImage {
+        border-color: #000000;
+        border-radius: 100%;
     }
 </style>
