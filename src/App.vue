@@ -38,7 +38,7 @@
     overflow-x: hidden;
   }
 
-  
+  .login {overflow-y: hidden;}
 
   
 </style>

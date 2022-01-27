@@ -2,19 +2,22 @@
     <div>
         <!-- butões de abrir os forms de cada persona -->
         <div class="group" v-if="!isHidden">
-            <div id="criança" class="col-md-3">
+            <div id="criança" class="col-md-3"
+                 data-toggle="tooltip" data-placement="top" title="Crie uma conta para o seu educando!">
                 <button id="btnCriança" @click="showCriançaForm()">
                     <img src="../assets/images/icons/personaCrianca.png" width="70%">
                     <div class="text"><p>Criança</p></div>
                 </button>
             </div>
-            <div id="tutor" class="col-md-3">
+            <div id="tutor" class="col-md-3"
+                 data-toggle="tooltip" data-placement="top" title="Crie uma conta de tutor!">
                 <button id="btnTutor" @click="showTutorForm()">
                     <img src="../assets/images/icons/personaTutor.png" width="70%">
                     <div class="text"><p>Tutor</p></div>
                 </button>
             </div>
-            <div id="psicologo" class="col-md-3">
+            <div id="psicologo" class="col-md-3"
+                 data-toggle="tooltip" data-placement="top" title="Crie uma conta aqui se for psicólogo!">
                 <button id="btnPsic" @click="showPsicForm()">
                     <img src="../assets/images/icons/psicologos.png" width="70%">
                     <div class="text"><p>Psicólogo</p></div>
@@ -23,66 +26,53 @@
         </div>
 
         <!-- secção de formulários -->
-        <div id="formSection">
+        <div id="formSection" class="mb-5">
 
             <!-- modal criar conta criança -->
-            <my-modal-component v-show="showCriança">
+            <my-modal-component v-show="showCriança" class="mt-5">
                 <div class="container">
                     <button type="button" id="btnClose" class="close mr-2 mt-3" @click="closeCriançaForm()">&times;</button>
-                    <form class="row" @submit.prevent="register('criança')">
-                        <div class="col-sm-5">
-                            <div class="form-group">
+                    <form @submit.prevent="register('criança')" id="formCriancaTutorPsicologo">
+
+                        <div class="row">
+                            <div class="col">
                                 <button style="border: none;background-color: transparent">
                                     <img src="../assets/images/icons/userImage.png" width="50%">
                                 </button>
-                            </div>
-                            <div class="form-group">
-                                <label for="txtUsername">Nome de utilizador</label><br>
-                                <input type="text" id="txtUsername" required v-model="form.username">
-                            </div>
-                            <div class="form-group">
-                                <label for="sltGrau">Grau de autismo</label><br>
-                                <select id="sltGrau" required v-model="form.grauAutismo">
+
+                                <label class="mt-3" for="txtUsername">Nome de utilizador</label>
+                                <input type="text" id="txtUsername" required v-model="form.username" style="width:40%">
+                                
+                                <label class="mt-3" for="sltGrau">Grau de autismo</label>
+                                <select id="sltGrau" required v-model="form.grauAutismo" style="width:40%">
                                     <option value=""></option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                 </select>
                             </div>
-                        </div>
-                        <div class="col-sm-7">
-                            <div class="form-group">
-                                <label for="txtName">Nome completo</label><br>
-                                <input type="text" id="txtName" required v-model="form.fullName">    
-                            </div>
-                            <div class="form-group">
-                                <label for="txtEmail">Email do tutor</label><br>
-                                <input type="email" id="txtEmail" required v-model="form.email">
-                            </div>
-                            <div class="form-group">
-                                    <div class="col-md-8">
-                                        <label for="txtBirthDate">Data de nascimento</label><br>
-                                        <input type="date" id="txtBirthDate" required v-model="form.dateBirth">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="sltGender">Género</label><br>
-                                        <select id="sltGender" required v-model="form.gender">
-                                            <option value=""></option>
-                                            <option value="m">masculino</option>
-                                            <option value="f">feminino</option>
-                                        </select>
-                                    </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="txtPassword">Palavra-passe</label><br>
-                                <input type="password" id="txtPassword" required v-model="form.password">
-                            </div>
-                            <div class="form-group">
-                                <label for="txtConfirmPassword">Confirmar palavra-passe</label><br>
-                                <input type="password" id="txtConfirmPassword" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" value="Registar">
+                            
+                            <div class="col my-3">
+                                <label for="txtName" class="mt-3">Nome completo</label>
+                                <input type="text" id="txtName" required v-model="form.fullName" style="width:70%">   
+                                <label for="txtEmail" class="mt-3">Email do tutor</label>
+                                <input type="email" id="txtEmail" required v-model="form.email" style="width:70%">
+
+                                <label for="txtBirthDate" class="mt-3">Data de nascimento</label>
+                                <input type="date" id="txtBirthDate" required v-model="form.dateBirth" style="width:70%">
+                                
+                                <label for="sltGender" class="mt-3">Género</label>
+                                <select id="sltGender" required v-model="form.gender" style="width:70%">
+                                    <option value=""></option>
+                                    <option value="m">masculino</option>
+                                    <option value="f">feminino</option>
+                                </select>
+                                        
+                                <label for="txtPassword" class="mt-3">Palavra-passe</label>
+                                <input type="password" id="txtPassword" required v-model="form.password" style="width:70%">
+                                <label for="txtConfirmPassword" class="mt-3">Confirmar palavra-passe</label>
+                                <input type="password" id="txtConfirmPassword" required style="width:70%">
+                                <input type="submit" value="Registar" class="mt-4">
                             </div>
                         </div>
                     </form>
@@ -91,58 +81,47 @@
             </my-modal-component>
 
             <!-- modal criar conta tutor -->
-            <my-modal-component v-show="showTutor">
+            <my-modal-component v-show="showTutor" class="mt-5">
                 <div class="container">
                     <button id="btnClose" type="button" class="close mr-2 mt-3" @click="closeTutorForm()">&times;</button>
-                    <form class="row" @submit.prevent="register('tutor')">
-                        <div class="col-sm-4">
-                            <div class="form-group">
+                    <form @submit.prevent="register('tutor')" id="formCriancaTutorPsicologo">
+
+                        <div class="row">
+                            <div class="col">
                                 <button style="border: none;background-color: transparent">
                                     <img src="../assets/images/icons/userImage.png" width="50%">
                                 </button>
+
+                                <label class="mt-3" for="txtUsername">Nome de utilizador</label>
+                                <input type="text" id="txtUsername" required v-model="form.username" style="width:40%">
+                                
+                                <label class="mt-3" for="txtContact">Contacto</label>
+                                <input type="tel" id="txtContact" required v-model="form.phoneNumber" style="width:40%">
                             </div>
-                            <div class="form-group">
-                                <label for="txtUsername">Nome de utilizador</label><br>
-                                <input type="text" id="txtUsername" required v-model="form.username">
-                            </div>
-                            <div class="form-group">
-                                <label for="txtContact">Contacto</label><br>
-                                <input type="tel" id="txtContact" required v-model="form.phoneNumber">
-                            </div>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="form-group">
-                                <label for="txtName">Nome completo</label><br>
-                                <input type="text" id="txtName" required v-model="form.fullName">    
-                            </div>
-                            <div class="form-group">
-                                <label for="txtEmail">Email</label><br>
-                                <input type="email" id="txtEmail" required v-model="form.email">
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-8">
-                                    <label for="txtBirthDate">Data de nascimento</label><br>
-                                    <input type="date" id="txtBirthDate" required v-model="form.dateBirth">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="sltGender">Género</label><br>
-                                    <select id="sltGender" required v-model="form.gender">
-                                        <option value=""></option>
-                                        <option value="m">masculino</option>
-                                        <option value="f">feminino</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="txtPassword">Palavra-passe</label><br>
-                                <input type="password" id="txtPassword" required v-model="form.password">
-                            </div>
-                            <div class="form-group">
-                                <label for="txtConfirmPassword">Confirmar palavra-passe</label><br>
-                                <input type="password" id="txtConfirmPassword" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" value="Registar">
+                            <div class="col my-3">
+                                <label for="txtName" class="mt-3">Nome completo</label>
+                                <input type="text" id="txtName" required v-model="form.fullName" style="width:70%">
+                                
+                                <label for="txtEmail" class="mt-3">Email</label>
+                                <input type="email" id="txtEmail" required v-model="form.email" style="width:70%">
+                                
+                                <label for="txtBirthDate" class="mt-3">Data de nascimento</label>
+                                <input type="date" id="txtBirthDate" required v-model="form.dateBirth" style="width:70%">
+                                
+                                <label for="sltGender" class="mt-3">Género</label>
+                                <select id="sltGender" required v-model="form.gender" style="width:70%">
+                                    <option value=""></option>
+                                    <option value="m">masculino</option>
+                                    <option value="f">feminino</option>
+                                </select>
+                                    
+                                <label for="txtPassword" class="mt-3">Palavra-passe</label>
+                                <input type="password" id="txtPassword" required v-model="form.password" style="width:70%">
+                                
+                                <label for="txtConfirmPassword" class="mt-3">Confirmar palavra-passe</label>
+                                <input type="password" id="txtConfirmPassword" required style="width:70%">
+                                
+                                <input type="submit" value="Registar" class="mt-4">
                             </div>
                         </div>
                     </form>
@@ -150,65 +129,54 @@
             </my-modal-component>
 
             <!-- modal criar conta psicólogo -->
-            <my-modal-component v-show="showPsic">
+            <my-modal-component v-show="showPsic" class="mt-5">
                 <div class="container">
                     <button id="btnClose" type="button" class="close mr-2 mt-3" @click="closePsicForm()">&times;</button>
-                    <form class="row" @submit.prevent="register('psicologo')">
-                        <div class="col-sm-6">
-                            <div class="form-group">
+                    <form @submit.prevent="register('psicologo')" id="formCriancaTutorPsicologo">
+                        <div class="row">
+                            <div class="col">
                                 <button style="border: none;background-color: transparent">
                                     <img src="../assets/images/icons/userImage.png" width="50%">
                                 </button>
+
+                                <label class="mt-3" for="txtUsername">Nome de utilizador</label>
+                                <input type="text" id="txtUsername" required v-model="form.username" style="width:40%">
+
+                                <label class="mt-3" for="txtLicenciatura">Licenciatura</label>
+                                <input type="text" id="txtLicenciatura" v-model="form.licenciatura" style="width:40%">
+
                             </div>
-                            <div class="form-group">
-                                <label for="txtUsername">Nome de utilizador</label><br>
-                                <input type="text" id="txtUsername" required v-model="form.username">
-                            </div>
-                            <div class="form-group">
-                                <label for="txtLicenciatura">Licenciatura</label><br>
-                                <input type="text" id="txtLicenciatura" v-model="form.licenciatura">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="txtName">Nome completo</label><br>
-                                <input type="text" id="txtName" required v-model="form.fullName">    
-                            </div>
-                            <div class="form-group">
-                                <label for="txtEmail">Email</label><br>
-                                <input type="email" id="txtEmail" required v-model="form.email">
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-8">
-                                    <label for="txtBirthDate">Data de nascimento</label><br>
-                                    <input type="date" id="txtBirthDate" required v-model="form.dateBirth">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="sltGender">Género</label><br>
-                                    <select id="sltGender" required v-model="form.gender">
-                                        <option value=""></option>
-                                        <option value="m">masculino</option>
-                                        <option value="f">feminino</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="txtPassword">Palavra-passe</label><br>
-                                <input type="password" id="txtPassword" required v-model="form.password">
-                            </div>
-                            <div class="form-group">
-                                <label for="txtConfirmPassword">Confirmar palavra-passe</label><br>
-                                <input type="password" id="txtConfirmPassword" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" value="Registar">
+                            <div class="col my-3">
+                                <label for="txtName" class="mt-3">Nome completo</label>
+                                <input type="text" id="txtName" required v-model="form.fullName" style="width:70%">   
+
+                                <label for="txtEmail" class="mt-3">Email</label>
+                                <input type="email" id="txtEmail" required v-model="form.email" style="width:70%">
+
+                                <label for="txtBirthDate" class="mt-3">Data de nascimento</label>
+                                <input type="date" id="txtBirthDate" required v-model="form.dateBirth" style="width:70%">
+
+                                <label for="sltGender" class="mt-3">Género</label>
+                                <select id="sltGender" required v-model="form.gender" style="width:70%">
+                                    <option value=""></option>
+                                    <option value="m">masculino</option>
+                                    <option value="f">feminino</option>
+                                </select>
+
+                                <label for="txtPassword" class="mt-3">Palavra-passe</label><br>
+                                <input type="password" id="txtPassword" required v-model="form.password" style="width:70%">
+
+                                <label for="txtConfirmPassword" class="mt-3">Confirmar palavra-passe</label>
+                                <input type="password" id="txtConfirmPassword" required style="width:70%">
+
+                                <input type="submit" value="Registar" class="mt-4">
                             </div>
                         </div>
                     </form>
                 </div>
             </my-modal-component>
         </div>
-        <div>
+        <div v-if="!isHidden">
             <img width="100%" src="../assets/images/curvesBackground/Group 30.png">
         </div>
 
@@ -330,7 +298,6 @@
     my-modal-component {
         display: flex;
         justify-content: center;
-        margin-top: 130px;
         /* position: relative; */
         background-color: rgba(255, 255, 255, 0.6);
         border: solid #62AFAF 4px;
@@ -368,4 +335,11 @@
         justify-content: flex-start;
         flex-direction: column;
     } */
+
+    #formCriancaTutorPsicologo .row .col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 </style>

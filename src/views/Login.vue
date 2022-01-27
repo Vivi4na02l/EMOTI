@@ -1,24 +1,40 @@
 <template>
-    <div class="login" max-height="100%">
+    <div class="login">
         <!-- <img src="../assets/images/curvesBackground/loginPinkCurve.png" width="100%">
-        <img src="../assets/images/curvesBackground/loginPinkOutline.png" width="100%">
-        <img src="../assets/images/curvesBackground/loginYellowCurve.png" width="100%"> -->
-        <div>
-            <img src="../assets/images/curvesBackground/loginPinkCurve.png">
-        </div>
+        <img src="../assets/images/curvesBackground/loginPinkOutline.png" width="100%"> -->
         
-        <form  id="formLogin" @submit.prevent="login">
-            <div id="text">
-                <h1>Bem-vindo, junte-se a nós!</h1>
-            </div>
+        <div>
             
-            <input type="text" id="txtUsername" placeholder="nome de utilizador" v-model="username" required />
-            <br>
-            <input type="password" id="txtPassword" placeholder="palavra-passe" v-model="password" required />
-            <input type="submit" value="INICIAR SESSÃO" class="btn mt-3 mr-3" id="btnIniciar">
-            <button type="button" class="btn mt-3 mr-3" id="btnIniciar" @click="$router.push({name: 'Register'})"><div class="m-1">CRIAR CONTA</div></button>
-            <br><br><br><br>
-        </form>
+        </div>
+
+        <table style="width: 100%;"><tr><td></td><td rowspan=2>
+                <div>
+                    <img src="../assets/images/curvesBackground/loginPinkCurve.png" width="90%" class="float-right">
+                    <img src="../assets/images/curvesBackground/loginYellowCurve.png" width="90%" class="float-left">
+                </div>
+        </td></tr><tr>
+        <td colspan=2>
+    
+                <form  id="formLogin" @submit.prevent="login">
+                    <div id="text">
+                        <h1>Bem-vindo, junte-se a nós!</h1>
+                    </div>
+                    
+                    <input type="text" id="txtUsername" placeholder="nome de utilizador" v-model="username" required />
+                    <br>
+                    <input type="password" id="txtPassword" placeholder="palavra-passe" v-model="password" required />
+
+                    <div id="divButtons">
+                        <input type="submit" value="INICIAR SESSÃO" class="btn mt-3 mr-3" id="btnIniciar">
+                        <button type="button" class="btn mt-3 mr-3" id="btnRegistar" @click="$router.push({name: 'Register'})">
+                            <div class="m-1">CRIAR CONTA</div>
+                        </button>
+                    </div>
+                    
+                    <br><br><br><br>
+                </form>
+
+        </td></tr></table>
 
         <NavBar></NavBar>
     </div>
@@ -68,16 +84,22 @@ import NavBar from '../components/NavBar.vue'
         flex-direction: column;
         align-items: center;
 
-        background-image: url("../assets/images/curvesBackground/loginYellowCurve.png");
+        /* background-image: url("../assets/images/curvesBackground/loginYellowCurve.png");
         background-size: contain;
-        background-repeat: no-repeat;
+        background-repeat: no-repeat; */
     }
     #btnIniciar {
         font-family: Baloo_2 extrabold;
         background-color: #FFD167;
         color: #FFFFFF;
         border-radius: 14px;
-        right: 0px;
+    } #btnRegistar {
+        font-family: Baloo_2 extrabold;
+        background-color: #FFFFFF;
+        color: #FFD167;
+        border-width: 2px;
+        border-color: #FFD167;
+        border-radius: 14px;
     }
     input {
         width: 300px;
@@ -91,5 +113,10 @@ import NavBar from '../components/NavBar.vue'
         left: 30px;
         top: 5px;
         opacity: 0.5;
+    }
+
+    #divButtons {
+        display: flex;
+        flex-direction: row;
     }
 </style>
