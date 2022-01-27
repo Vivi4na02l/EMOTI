@@ -32,7 +32,7 @@
             <my-modal-component v-show="showCriança" class="mt-5">
                 <div class="container">
                     <button type="button" id="btnClose" class="close mr-2 mt-3" @click="closeCriançaForm()">&times;</button>
-                    <form @submit.prevent="register('criança')" id="formCriancaTutorPsicologo">
+                    <form @submit.prevent="register('crianca')" id="formCriancaTutorPsicologo">
 
                         <div class="row">
                             <div class="col">
@@ -251,6 +251,12 @@
              register(payload) {
                 if (this.isUsernameAvailable(this.form.username)) {
                     this.form.type = payload
+
+                    if (payload == 'crianca') {
+                        this.form.right = 0
+                        this.form.wrong = 0
+                    }
+
                     this.SET_NEW_USER(this.form)
                     this.$router.push({ name: "Login" });
                 } else {

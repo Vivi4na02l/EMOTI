@@ -41,11 +41,8 @@
 
             </dialog>
 
-            <div id="game" class="mx-5 mb-5 mt-2 col-10">
+            <div id="game" class="mx-5 mb-5 mt-2 col-10" v-if="level != maxLevel">
                 <div id="gameNav" class="m-2">
-                    <a class="btn" id="btnPause">
-                        <img src="../assets/images/jogo/pause.png" width="50%">
-                    </a>
                     <div>
                         <p>{{this.level+1}}/{{this.maxLevel}}</p>
                     </div>
@@ -68,6 +65,15 @@
                             {{ emotion }}
                         </div>
                         </button>
+                    </div>
+                </div>
+            </div>
+
+            <div v-else>
+                <div id="game" class="mx-5 mb-5 mt-2 col-10">
+                    <div class="m-5">
+                        <p>Parabéns, acabaste a partida com apenas {{this.wrong}} respostas erradas!</p>
+                        <button class="btn" id="btnReset" @click="reset()">RECOMEÇAR</button>
                     </div>
                 </div>
             </div>
@@ -103,13 +109,14 @@
                 randomEmotionsImages: [],
                 randomEmotionsSorted: [],
 
-                color: 'red'
+                wrong: 0,
             }
         },
 
         computed: {
             ...mapGetters({
-                arrayRecognizeEmotion: 'getjogoRecognizeEmotion'
+                arrayRecognizeEmotion: 'getjogoRecognizeEmotion',
+                loggedUser: 'getLoggedUser',
             }),
             
             ...mapGetters(['getRandomImageEmotion', 'isEmotion'])
@@ -134,11 +141,13 @@
             
         methods: {
             imagePerLevel() {
-                this.level = this.level + 1
-                this.currentEmotionImage = {
-                    pos: this.randomEmotionsImages[this.level].pos,
-                    emotion: this.randomEmotionsImages[this.level].emotion,
-                    image: this.randomEmotionsImages[this.level].image
+                if (this.level != this.maxLevel) {
+                    this.level = this.level + 1
+                    this.currentEmotionImage = {
+                        pos: this.randomEmotionsImages[this.level].pos,
+                        emotion: this.randomEmotionsImages[this.level].emotion,
+                        image: this.randomEmotionsImages[this.level].image
+                    }
                 }
             },
 
@@ -216,10 +225,17 @@
                 // alert('botão: '+btnEmotion+' emoção: '+this.currentEmotionImage.emotion)
 
                 if (btnEmotion == this.currentEmotionImage.emotion) {
-                    // alert('sim')
+                    if (this.loggedUser != null) {
+                        if (this.loggedUser.type == 'crianca' ) {
+                            this.$store.commit("MUTATE_USER_ANSWERS", 'right')
+                        }
+                    }
                     this.imagePerLevel()
                 } else {
-                    // alert('não')
+                    if (this.loggedUser != null) {
+                        this.$store.commit("MUTATE_USER_ANSWERS", 'wrong')
+                        this.wrong += 1
+                    }
                 }
             },
 
@@ -261,6 +277,20 @@
                 } else {
                     this.maxLevel = 8
                 }
+            },
+
+            reset() {
+                this.level = -1
+                
+                this.changeMaxLevel()
+
+                this.randomEmotionsImages = []
+                this.createRandomEmotions()
+
+                this.randomEmotionsSorted = []
+                this.createEmotionButtons()
+
+                this.imagePerLevel()
             }
         },
     }
@@ -297,7 +327,7 @@
         border-color: #606060;
     } #gameNav {
         display: flex;
-        justify-content: space-between;
+        justify-content: end;
     } #gameContent {
         display: flex;
         flex-direction: column;
@@ -307,12 +337,12 @@
         justify-content: center;
     }
 
-    #btnEditFilter {
+    #btnEditFilter, #btnReset {
         font-family: Baloo_2 extrabold;
         background-color: #FFFFFF;
         color: #29ABE2;
         border-color: #29ABE2;
-    } #btnEditFilter:hover {
+    } #btnEditFilter:hover, #btnReset:hover {
         background-color: #29ABE2;
         color: #FFFFFF;
     }

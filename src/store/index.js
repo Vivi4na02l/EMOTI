@@ -151,7 +151,7 @@ export default new Vuex.Store({
 
   getters: {
     getjogoRecognizeEmotion: (state) => { return state.jogoRecognizeEmotion },
-
+    
     getarrayFAQ: (state) => { return state.arrayFAQ },
 
     // getRandomImageEmotion: (state) => (emotion, image) => 
@@ -163,7 +163,7 @@ export default new Vuex.Store({
     ),
 
     isUsernameAvailable: (state) => (username) => state.users.every((user) => user.username !== username),
-    getLoggedUser: (state) => state.loggedUser
+    getLoggedUser: (state) => { return state.loggedUser }
   },
 
   mutations: {
@@ -209,6 +209,14 @@ export default new Vuex.Store({
         question: payload,
         answer: ''
     }),
+    MUTATE_USER_ANSWERS(state, payload) {
+      if (payload == 'right') {
+        state.users.find(pos => pos.username == state.loggedUser.username).right++
+      }
+      if (payload == 'wrong') {
+        state.users.find(pos => pos.username == state.loggedUser.username).wrong++
+      }
+    },
   },
   actions: {
   },

@@ -2,28 +2,24 @@
     <div>
         <!-- Background -->
         
+        <table><tr><td></td><td rowspan=2>
 
-        <div class="header-container">
-            <div class="wrapper">
-                <header>
-                    <div class="introJogos">
+                <img src="../assets/images/curvesBackground/jogosbg.png" width="100%">
+
+        </td></tr><tr>
+        <td colspan=2>
+
+                <div class="row">
+                    <div class="col-4">
                         <h2>"Conheces esta expressão?"</h2>
                         <p>Neste jogo tens de adivinhar a emoção <br> associada a cada imagem que será mostrada.</p>
                         <router-link to="/Jogo">
                             <button class="btn mt-3 mr-3" id="btnJogar" >Jogar</button>
                         </router-link>
                     </div>
-                    <!-- <div class="col mt-5 mr-5 align-self-center" id="container2">
-					<img src="../assets/images/fotoFeliz.png" width="100%">
-                
-                    </div> -->
-                    
-                </header>
-                
-                
-            </div>
-        </div>
-        
+                </div>
+
+        </td></tr></table>
 
         <div class="explanation-container">
             
@@ -79,15 +75,15 @@
 <style lang="scss" scoped>
 
     // Background jogos
-    .header-container {
-        background-image: url('../assets/images/curvesBackground/BG_Jogos.svg');
+    // .header-container {
+    //     background-image: url('../assets/images/curvesBackground/BG_Jogos.svg');
         
-        background-size: contain;
-        background-repeat: no-repeat;
-        width: 100%;
-        height: 640px;
+    //     background-size: contain;
+    //     background-repeat: no-repeat;
+    //     width: 100%;
+    //     height: 640px;
     
-    }
+    // }
 
     // Texto Intro
     .wrapper{
@@ -102,17 +98,11 @@
     }
 
     header h2{
-        position: relative;
-        left: -30px;
-        top: 230px;
         font-family: Baloo_2 extrabold;
         color: #606060;
     }
 
     header p{
-        position: relative;
-        left: -10px;
-        top: 250px;
         color: black;
     }
 
@@ -122,15 +112,11 @@
     color: #FFFFFF;
     height: 55px;
     width: 140px;
-    left: -20px;
-    top: 260px;
     border-radius: 14px;
     filter: drop-shadow(5px 4px 2px #00000030);
 
     font-family:Baloo_2 extrabold ;
-
-    position: relative;
-    right: 0px;
+    
   } #btnJogar:hover {
     background-color: #FFFFFF;
     color: #29ABE2;
@@ -144,9 +130,9 @@
     }
 
     #gm h2{
-         position: relative;
-         left: 15px;
-         top: 70px;
+        position: relative;
+        left: 15px;
+        top: 70px;
         font-family: Baloo_2 extrabold;
         font-style: normal;
         font-weight: 800;
@@ -195,8 +181,8 @@
         display: flex;
         justify-content: flex-end;
         position: relative;
-         left: -165px;
-         top: 40px;
+        left: -165px;
+        top: 40px;
          
     }
 
