@@ -7,16 +7,38 @@
         <td></td>
         <td rowspan="2">
           <div>
-            <img
-              src="../assets/images/curvesBackground/loginPinkCurve.png"
-              width="90%"
-              class="float-right"
-            />
-            <img
-              src="../assets/images/curvesBackground/loginYellowCurve.png"
-              width="90%"
-              class="float-left"
-            />
+            <!-- ~Change to webp format -->
+            <picture>
+              <source
+                srcset="../assets/images/curvesBackground/loginPinkCurve.webp"
+                type="image/webp"
+              />
+              <source
+                srcset="../assets/images/curvesBackground/loginPinkCurve.png"
+                type="image/png"
+              />
+              <img
+                src="../assets/images/curvesBackground/loginPinkCurve.png"
+                width="90%"
+                class="float-right"
+              />
+            </picture>
+            <!-- ~Change to webp format -->
+            <picture>
+              <source
+                srcset="../assets/images/curvesBackground/loginYellowCurve.webp"
+                type="image/webp"
+              />
+              <source
+                srcset="../assets/images/curvesBackground/loginYellowCurve.png"
+                type="image/png"
+              />
+              <img
+                src="../assets/images/curvesBackground/loginYellowCurve.png"
+                width="90%"
+                class="float-left"
+              />
+            </picture>
           </div>
         </td>
       </tr>
