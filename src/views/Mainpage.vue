@@ -34,7 +34,7 @@
             <td colspan="2">
               <div id="yellowContent">
                 <div>
-                  <h3 class="mr-4" style="color: black">
+                  <h3 class="mr-4" style="color: black; margin-left: 200px">
                     O <strong>autismo</strong> é parte deste mundo
                   </h3>
                   <h3 class="ml-5" style="color: black">

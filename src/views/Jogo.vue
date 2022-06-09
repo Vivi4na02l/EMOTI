@@ -1,12 +1,8 @@
 <template>
   <div class="Jogo">
     <div>
-      <table>
-        <tr>
-          <td></td>
-          <td rowspan="2"></td>
-          <!-- ~Change to webp format -->
-          <picture>
+      <div>
+        <picture>
             <source
               srcset="../assets/images/curvesBackground/game1Blue.webp"
               type="image/webp"
@@ -20,15 +16,10 @@
               width="100%"
             />
           </picture>
-        </tr>
-        <tr>
-          <td colspan="2">
+      </div>
             <div id="gameTitle">
-              <h1>"Conheces esta expressão?"</h1>
+              <h1 style="margin-top:-100px">"Conheces esta expressão?"</h1>
             </div>
-          </td>
-        </tr>
-      </table>
     </div>
 
     <div id="gameFrame" class="m-5">

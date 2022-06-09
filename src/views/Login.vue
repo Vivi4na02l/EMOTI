@@ -64,6 +64,15 @@
               v-model="password"
               required
             />
+            <br>
+            <div id="divRadios">
+              <input type="radio" value="Child" id="child" name="user">
+              <label for="child">Criança</label>
+              <input type="radio" value="Tutor" id="tutor" name="user">
+              <label for="tutor">Tutor</label>
+              <input type="radio" value="Psychologist" id="psychologist" name="user">
+              <label for="psychologist">Psicólogo</label>
+            </div>
 
             <div id="divButtons">
               <input
@@ -171,5 +180,17 @@ input[type="submit"] {
 #divButtons {
   display: flex;
   flex-direction: row;
+}
+
+#divRadios {
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  margin-right: 40px
+}
+
+input[type="radio"] {
+  margin-left: 30px;
 }
 </style>
