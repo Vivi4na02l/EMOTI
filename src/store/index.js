@@ -1,24 +1,31 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import { AuthService } from '../services/auth.service';
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    users: localStorage.users? JSON.parse(localStorage.users) :
-      [
-        {
-          username: "Admin",
-          password: "Esmad_2122",
-          type: "admin"
-        },
-        {
-          username: "User",
-          password: "Esmad_2122",
-          type: "user"
-        }
-      ],
-    
+    // users: localStorage.users? JSON.parse(localStorage.users) :
+    //   [
+    //     {
+    //       username: "Admin",
+    //       password: "Esmad_2122",
+    //       type: "admin"
+    //     },
+    //     {
+    //       username: "User",
+    //       password: "Esmad_2122",
+    //       type: "user"
+    //     }
+    //   ],
+    users: [
+      {
+        username: "Admin",
+        password: "Esmad_2122",
+        role: "admin"
+      }
+    ],
+    loggedIn: false,
     loggedUser: null,
     
     jogoRecognizeEmotion: localStorage.arrayEmotions? JSON.parse(localStorage.arrayEmotions) : [
@@ -148,9 +155,9 @@ export default new Vuex.Store({
   },
 
   getters: {
-    getjogoRecognizeEmotion: (state) => { return state.jogoRecognizeEmotion },
+    getjogoRecognizeEmotion: (state) => state.jogoRecognizeEmotion,
     
-    getarrayFAQ: (state) => { return state.arrayFAQ },
+    getarrayFAQ: (state) => state.arrayFAQ,
 
     isUser: (state) => (username, password) =>
       state.users.some(
@@ -158,25 +165,35 @@ export default new Vuex.Store({
     ),
 
     isUsernameAvailable: (state) => (username) => state.users.every((user) => user.username !== username),
-    getLoggedUser: (state) => { return state.loggedUser }
+    getLoggedUser: (state) => state.loggedUser,
+    getLoggedIn: (state) => state.loggedIn,
   },
 
   mutations: {
+    loginSuccess(state, payload) {
+        state.loggedIn = true;
+        state.loggedUser = payload;
+    },
+    loginFailure(state) {
+        state.loggedIn = false;
+        state.loggedUser = null;
+    },
     SET_LOGGED_USER(state, payload) {
       state.loggedUser = state.users.find((user) => user.username === payload);
       localStorage.loggedUser = JSON.stringify(state.loggedUser);
     },
     SET_NEW_USER(state, payload) {
       state.users.push(payload);
-      localStorage.users = JSON.stringify(state.users);
+      // localStorage.users = JSON.stringify(state.users);
     },
     SET_LOGOUT(state) {
       state.loggedUser = null;
-      localStorage.removeItem("loggedUser");
+      state.loggedIn = false;
+      // localStorage.removeItem("loggedUser");
     },
     SET_NEW_PASSWORD(state,payload) {
       state.users.find((user) => user.username == state.loggedUser.username).password = payload
-      localStorage.users = JSON.stringify(state.users);
+      // localStorage.users = JSON.stringify(state.users);
     },
 
     MUTATE_ARRAY_EMOTIONS(state, payload) {
@@ -226,6 +243,17 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    async login({ commit }, user) {
+      try{
+          const loggedUser = await AuthService.login(user);
+          commit('loginSuccess', loggedUser);
+      }
+      catch(error)
+      {
+          commit('loginFailure');
+          throw error;
+      }
+  },
   },
   modules: {
   }
