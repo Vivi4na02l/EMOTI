@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { AuthService } from '../services/auth.service';
+
+import { ChildrenService } from '../services/children.service'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -27,8 +30,8 @@ export default new Vuex.Store({
     ],
     loggedIn: false,
     loggedUser: null,
-    
-    jogoRecognizeEmotion: localStorage.arrayEmotions? JSON.parse(localStorage.arrayEmotions) : [
+
+    jogoRecognizeEmotion: localStorage.arrayEmotions ? JSON.parse(localStorage.arrayEmotions) : [
       {
         name: "alegria",
         images: [
@@ -151,18 +154,19 @@ export default new Vuex.Store({
         question: "Como é que o autismo é diagnosticado? Existe um teste para isto?",
         answer: "Ainda não há marcadores biológicos e exames específicos para autismo, mas alguns exames, como o cariótipo com pesquisa de X frágil, o eletroencefalograma (EEG), a ressonância magnética nuclear (RNM), os erros inatos do metabolismo, o teste do pezinho, as sorologias para sífilis, rubéola e toxoplasmose; a audiometria e testes neuropsicológicos podem ser necessários para investigar as causas e doenças associadas."
       }
-    ]
+    ],
+    message: "",
   },
 
   getters: {
-    getjogoRecognizeEmotion: (state) => state.jogoRecognizeEmotion,
-    
-    getarrayFAQ: (state) => state.arrayFAQ,
+    getjogoRecognizeEmotion: (state) => { return state.jogoRecognizeEmotion },
+
+    getarrayFAQ: (state) => { return state.arrayFAQ },
 
     isUser: (state) => (username, password) =>
       state.users.some(
         (user) => user.username === username && user.password === password
-    ),
+      ),
 
     isUsernameAvailable: (state) => (username) => state.users.every((user) => user.username !== username),
     getLoggedUser: (state) => state.loggedUser,
@@ -191,14 +195,14 @@ export default new Vuex.Store({
       state.loggedIn = false;
       // localStorage.removeItem("loggedUser");
     },
-    SET_NEW_PASSWORD(state,payload) {
+    SET_NEW_PASSWORD(state, payload) {
       state.users.find((user) => user.username == state.loggedUser.username).password = payload
       // localStorage.users = JSON.stringify(state.users);
     },
 
     MUTATE_ARRAY_EMOTIONS(state, payload) {
       state.jogoRecognizeEmotion.push(payload)
-      
+
       if (state.users.find(pos => pos.type == 'crianca')) {
         state.users.filter(pos => pos.type == 'crianca').game.push({
           emotion: payload.emotion,
@@ -219,28 +223,31 @@ export default new Vuex.Store({
     },
 
     MUTATE_ARRAY_QUESTIONS: (state, payload) => state.arrayFAQ.push({
-        approved: false,
-        question: payload,
-        answer: ''
+      approved: false,
+      question: payload,
+      answer: ''
     }),
 
     MUTATE_USER_ANSWERS(state, payload) {
       if (state.loggedUser.type == 'crianca') {
         if (payload.answer == 'right') {
           state.users.find((user) => user.username == state.loggedUser.username).game
-                    .find((pos) => pos.emotion == payload.emotion)
-                    .right++
+            .find((pos) => pos.emotion == payload.emotion)
+            .right++
         }
 
         if (payload.answer == 'wrong') {
           state.users.find((user) => user.username == state.loggedUser.username).game
-                    .find((pos) => pos.emotion == payload.emotion)
-                    .wrong++
+            .find((pos) => pos.emotion == payload.emotion)
+            .wrong++
         }
       }
 
       localStorage.users = JSON.stringify(state.users);
     },
+    SET_MESSAGE(state, payload) {
+      state.message = payload
+    }
   },
   actions: {
     async login({ commit }, user) {
@@ -254,6 +261,17 @@ export default new Vuex.Store({
           throw error;
       }
   },
+    /* Registo de uma criança */
+    async register({ commit }, child) {
+      try {
+        const response = await ChildrenService.register(child)
+        commit('SET_MESSAGE', response.msg)
+      }
+      catch (error) {
+        commit('SET_MESSAGE', '');
+        throw error;
+      }
+    }
   },
   modules: {
   }
