@@ -1,22 +1,20 @@
 import API_URL from './config.js'
 
-export const ChildrenService = {
-    async register(child) {
-        const response = await fetch(`${API_URL}/children`, {
+export const TutorService = {
+    async register(tutor) {
+        const response = await fetch(`${API_URL}/tutors`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
             },
             body:
                 JSON.stringify({
-                    username: child.username,
-                    name: child.name,
-                    password: child.password,
-                    gender: child.gender,
-                    birth_date: child.bod,
-                    autism_level: child.autism_level,
-                    image: child.image,
-                    email_tutor: child.email_tutor
+                    username: tutor.username,
+                    name: tutor.name,
+                    password: tutor.password,
+                    gender: tutor.gender,
+                    birth_date: tutor.bod,
+                    email: tutor.email
                 })
         });
         if (response.ok) {
@@ -28,7 +26,7 @@ export const ChildrenService = {
     }
 }
 
-export default ChildrenService
+export default TutorService
 
 function handleResponses(code) {
     let message = "";

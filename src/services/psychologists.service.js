@@ -1,22 +1,21 @@
 import API_URL from './config.js'
 
-export const ChildrenService = {
-    async register(child) {
-        const response = await fetch(`${API_URL}/children`, {
+export const PsychologistService = {
+    async register(psychologist) {
+        const response = await fetch(`${API_URL}/psychologists`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
             },
             body:
                 JSON.stringify({
-                    username: child.username,
-                    name: child.name,
-                    password: child.password,
-                    gender: child.gender,
-                    birth_date: child.bod,
-                    autism_level: child.autism_level,
-                    image: child.image,
-                    email_tutor: child.email_tutor
+                    username: psychologist.username,
+                    name: psychologist.name,
+                    password: psychologist.password,
+                    gender: psychologist.gender,
+                    birth_date: psychologist.bod,
+                    email: psychologist.email,
+                    degree: psychologist.degree
                 })
         });
         if (response.ok) {
@@ -28,7 +27,7 @@ export const ChildrenService = {
     }
 }
 
-export default ChildrenService
+export default PsychologistService
 
 function handleResponses(code) {
     let message = "";

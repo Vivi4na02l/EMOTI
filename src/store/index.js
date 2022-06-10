@@ -1,8 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { AuthService } from '../services/auth.service';
 
+import { AuthService } from '../services/auth.service';
 import { ChildrenService } from '../services/children.service'
+import { PsychologistService } from '../services/psychologists.service'
+import { TutorService } from '../services/tutors.service'
+import { QuestionService } from '../services/questions.service'
+import { EmotionService } from '../services/emotions.service'
 
 Vue.use(Vuex)
 
@@ -175,12 +179,12 @@ export default new Vuex.Store({
 
   mutations: {
     loginSuccess(state, payload) {
-        state.loggedIn = true;
-        state.loggedUser = payload;
+      state.loggedIn = true;
+      state.loggedUser = payload;
     },
     loginFailure(state) {
-        state.loggedIn = false;
-        state.loggedUser = null;
+      state.loggedIn = false;
+      state.loggedUser = null;
     },
     SET_LOGGED_USER(state, payload) {
       state.loggedUser = state.users.find((user) => user.username === payload);
@@ -251,16 +255,15 @@ export default new Vuex.Store({
   },
   actions: {
     async login({ commit }, user) {
-      try{
-          const loggedUser = await AuthService.login(user);
-          commit('loginSuccess', loggedUser);
+      try {
+        const loggedUser = await AuthService.login(user);
+        commit('loginSuccess', loggedUser);
       }
-      catch(error)
-      {
-          commit('loginFailure');
-          throw error;
+      catch (error) {
+        commit('loginFailure');
+        throw error;
       }
-  },
+    },
     /* Registo de uma criança */
     async register({ commit }, child) {
       try {

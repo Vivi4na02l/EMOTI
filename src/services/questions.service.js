@@ -1,34 +1,30 @@
 import API_URL from './config.js'
 
-export const ChildrenService = {
-    async register(child) {
-        const response = await fetch(`${API_URL}/children`, {
+export const QuestionService = {
+    async register(question) {
+        const response = await fetch(`${API_URL}/questions`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
             },
             body:
                 JSON.stringify({
-                    username: child.username,
-                    name: child.name,
-                    password: child.password,
-                    gender: child.gender,
-                    birth_date: child.bod,
-                    autism_level: child.autism_level,
-                    image: child.image,
-                    email_tutor: child.email_tutor
+                    username_tutor: question.user,
+                    text: question.text
                 })
         });
         if (response.ok) {
             const data = await response.json()
-            return data
+            if (data.accessToken)
+                localStorage.setItem('question', JSON.stringify(data));
+            return data;
         } else {
             throw Error(handleResponses(response.status))
         }
     }
 }
 
-export default ChildrenService
+export default QuestionService
 
 function handleResponses(code) {
     let message = "";
