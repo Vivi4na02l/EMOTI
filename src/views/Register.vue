@@ -87,7 +87,7 @@
             &times;
           </button>
           <form
-            @submit.prevent="register('crianca')"
+            @submit.prevent="handleRegister('child')"
             id="formCriancaTutorPsicologo"
           >
             <div class="row">
@@ -123,7 +123,7 @@
                 <select
                   id="sltGrau"
                   required
-                  v-model="form.grauAutismo"
+                  v-model="form.autism_level"
                   style="width: 40%"
                 >
                   <option value=""></option>
@@ -139,15 +139,15 @@
                   type="text"
                   id="txtName"
                   required
-                  v-model="form.fullName"
+                  v-model="form.name"
                   style="width: 70%"
                 />
-                <label for="txtEmail" class="mt-3">Email do tutor</label>
+                <label for="txtEmail" class="mt-3">Username do tutor</label>
                 <input
-                  type="email"
+                  type="text"
                   id="txtEmail"
                   required
-                  v-model="form.email"
+                  v-model="form.leading_tutor"
                   style="width: 70%"
                 />
 
@@ -158,7 +158,7 @@
                   type="date"
                   id="txtBirthDate"
                   required
-                  v-model="form.dateBirth"
+                  v-model="form.dob"
                   style="width: 70%"
                 />
 
@@ -170,8 +170,8 @@
                   style="width: 70%"
                 >
                   <option value=""></option>
-                  <option value="m">masculino</option>
-                  <option value="f">feminino</option>
+                  <option value="male">masculino</option>
+                  <option value="female">feminino</option>
                 </select>
 
                 <label for="txtPassword" class="mt-3">Palavra-passe</label>
@@ -210,7 +210,7 @@
             &times;
           </button>
           <form
-            @submit.prevent="register('tutor')"
+            @submit.prevent="handleRegister('tutor')"
             id="formCriancaTutorPsicologo"
           >
             <div class="row">
@@ -257,7 +257,7 @@
                   type="text"
                   id="txtName"
                   required
-                  v-model="form.fullName"
+                  v-model="form.name"
                   style="width: 70%"
                 />
 
@@ -277,7 +277,7 @@
                   type="date"
                   id="txtBirthDate"
                   required
-                  v-model="form.dateBirth"
+                  v-model="form.dob"
                   style="width: 70%"
                 />
 
@@ -289,8 +289,8 @@
                   style="width: 70%"
                 >
                   <option value=""></option>
-                  <option value="m">masculino</option>
-                  <option value="f">feminino</option>
+                  <option value="male">masculino</option>
+                  <option value="female">feminino</option>
                 </select>
 
                 <label for="txtPassword" class="mt-3">Palavra-passe</label>
@@ -331,7 +331,7 @@
             &times;
           </button>
           <form
-            @submit.prevent="register('psicologo')"
+            @submit.prevent="handleRegister('psychologist')"
             id="formCriancaTutorPsicologo"
           >
             <div class="row">
@@ -367,7 +367,7 @@
                 <input
                   type="text"
                   id="txtLicenciatura"
-                  v-model="form.licenciatura"
+                  v-model="form.degree"
                   style="width: 40%"
                 />
               </div>
@@ -377,7 +377,7 @@
                   type="text"
                   id="txtName"
                   required
-                  v-model="form.fullName"
+                  v-model="form.name"
                   style="width: 70%"
                 />
 
@@ -397,7 +397,7 @@
                   type="date"
                   id="txtBirthDate"
                   required
-                  v-model="form.dateBirth"
+                  v-model="form.dob"
                   style="width: 70%"
                 />
 
@@ -409,8 +409,8 @@
                   style="width: 70%"
                 >
                   <option value=""></option>
-                  <option value="m">masculino</option>
-                  <option value="f">feminino</option>
+                  <option value="male">masculino</option>
+                  <option value="female">feminino</option>
                 </select>
 
                 <label for="txtPassword" class="mt-3">Palavra-passe</label
@@ -460,19 +460,25 @@ export default {
     return {
       form: {
         username: "",
-        grauAutismo: 1,
-        fullName: "",
-        email: "",
-        dateBirth: "",
-        gender: "",
+        name: "",
         password: "",
-        phoneNumber: "",
-        type: null,
+        gender: "",
+        dob: "",
+        autism_level: 1,
+        leading_tutor: "",
+        degree: "",
+        email: "",
+        // phoneNumber: "",
+        role: null,
       },
       showCriança: false,
       showTutor: false,
       showPsic: false,
       isHidden: false,
+      successful: false,
+      message: "",
+      loading: false,
+      errors: []
     };
   },
   created: function () {
@@ -482,12 +488,13 @@ export default {
     document.body.style.backgroundColor = null;
   },
   computed: {
-    ...mapGetters(["isUsernameAvailable"]),
+    ...mapGetters(["getMessage", "getLoggedIn"]),
+    // ...mapGetters(["isUsernameAvailable"]),
 
-    ...mapGetters({
-      arrayRecognizeEmotion: "getjogoRecognizeEmotion",
-      loggedUser: "getLoggedUser",
-    }),
+    // ...mapGetters({
+    //   arrayRecognizeEmotion: "getjogoRecognizeEmotion",
+    //   loggedUser: "getLoggedUser",
+    // }),
   },
   methods: {
     showCriançaForm() {
@@ -516,26 +523,84 @@ export default {
     },
     ...mapMutations(["SET_NEW_USER"]),
 
-    register(payload) {
-      if (this.isUsernameAvailable(this.form.username)) {
-        this.form.type = payload;
+    // register(payload) {
+    //   if (this.isUsernameAvailable(this.form.username)) {
+    //     this.form.type = payload;
 
-        if (payload == "crianca") {
-          this.form.game = [];
+    //     if (payload == "crianca") {
+    //       this.form.game = [];
 
-          for (const emotion of this.arrayRecognizeEmotion) {
-            this.form.game.push({
-              emotion: emotion.name,
-              right: 0,
-              wrong: 0,
-            });
+    //       for (const emotion of this.arrayRecognizeEmotion) {
+    //         this.form.game.push({
+    //           emotion: emotion.name,
+    //           right: 0,
+    //           wrong: 0,
+    //         });
+    //       }
+    //     }
+
+    //     this.SET_NEW_USER(this.form);
+    //     this.$router.push({ name: "Login" });
+    //   } else {
+    //     alert("Utilizador já existe! Tente de novo!");
+    //   }
+    // },
+
+    async handleRegister(payload) {
+
+      this.message = "";
+      this.loading = true;
+      this.successful = false;
+      this.errors = [];
+      this.form.role = payload
+
+      if (this.form.username && this.form.password) {
+
+        //makes request by dispatching an action
+        try {
+
+          // if (payload == 'child') {
+          //   this.form.game = [];
+
+          //   for (const emotion of this.arrayRecognizeEmotion) {
+          //     this.form.game.push({
+          //       emotion: emotion.name,
+          //       right: 0,
+          //       wrong: 0,
+          //     });
+          //   }
+          // }
+
+          if (payload == 'child') {
+            await this.$store.dispatch("registerChild", this.form /*formData*/);
           }
-        }
+          if (payload == 'tutor') {
+            await this.$store.dispatch("registerTutor", this.form /*formData*/);
+          }
+          if (payload == 'psychologist') {
+            await this.$store.dispatch("registerPsychologist", this.form /*formData*/);
+          }
+          
 
-        this.SET_NEW_USER(this.form);
-        this.$router.push({ name: "Login" });
+          this.message = this.$store.getters.getMessage;
+
+          this.successful = true;
+          this.$router.push({ name: "Login" });
+        } catch (error) {
+          this.message =
+            (error.response && error.response.data) ||
+            error.message || error.toString();
+        } finally {
+          this.loading = false;
+        }
       } else {
-        alert("Utilizador já existe! Tente de novo!");
+        this.loading = false;
+        if (!this.user.username) {
+          this.errors.push("Username required.");
+        }
+        if (!this.user.password) {
+          this.errors.push("Password required.");
+        }
       }
     },
   },

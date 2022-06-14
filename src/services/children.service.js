@@ -13,10 +13,10 @@ export const ChildrenService = {
                     name: child.name,
                     password: child.password,
                     gender: child.gender,
-                    birth_date: child.bod,
+                    dob: child.dob,
                     autism_level: child.autism_level,
                     image: child.image,
-                    email_tutor: child.email_tutor
+                    leading_tutor: child.leading_tutor
                 })
         });
         if (response.ok) {

@@ -13,7 +13,7 @@ export const PsychologistService = {
                     name: psychologist.name,
                     password: psychologist.password,
                     gender: psychologist.gender,
-                    birth_date: psychologist.bod,
+                    dob: psychologist.dob,
                     email: psychologist.email,
                     degree: psychologist.degree
                 })

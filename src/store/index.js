@@ -5,8 +5,8 @@ import { AuthService } from '../services/auth.service';
 import { ChildrenService } from '../services/children.service'
 import { PsychologistService } from '../services/psychologists.service'
 import { TutorService } from '../services/tutors.service'
-import { QuestionService } from '../services/questions.service'
-import { EmotionService } from '../services/emotions.service'
+// import { QuestionService } from '../services/questions.service'
+// import { EmotionService } from '../services/emotions.service'
 
 Vue.use(Vuex)
 
@@ -29,7 +29,7 @@ export default new Vuex.Store({
       {
         username: "Admin",
         password: "Esmad_2122",
-        role: "admin"
+        role: "child"
       }
     ],
     loggedIn: false,
@@ -175,6 +175,8 @@ export default new Vuex.Store({
     isUsernameAvailable: (state) => (username) => state.users.every((user) => user.username !== username),
     getLoggedUser: (state) => state.loggedUser,
     getLoggedIn: (state) => state.loggedIn,
+    getMessage: (state) => state.message,
+    getUsers: (state) => state.users,
   },
 
   mutations: {
@@ -265,8 +267,9 @@ export default new Vuex.Store({
       }
     },
     /* Registo de uma criança */
-    async register({ commit }, child) {
+    async registerChild({ commit }, child) {
       try {
+        console.log(child)
         const response = await ChildrenService.register(child)
         commit('SET_MESSAGE', response.msg)
       }
@@ -274,7 +277,37 @@ export default new Vuex.Store({
         commit('SET_MESSAGE', '');
         throw error;
       }
-    }
+    },
+
+    async registerTutor({ commit }, tutor) {
+      try {
+        console.log(tutor)
+        const response = await TutorService.register(tutor)
+        commit('SET_MESSAGE', response.msg)
+      }
+      catch (error) {
+        commit('SET_MESSAGE', '');
+        throw error;
+      }
+    },
+
+    async registerPsychologist({ commit }, psychologist) {
+      try {
+        console.log(psychologist)
+        const response = await PsychologistService.register(psychologist)
+        commit('SET_MESSAGE', response.msg)
+      }
+      catch (error) {
+        commit('SET_MESSAGE', '');
+        throw error;
+      }
+    },
+
+    logout({ commit }) {
+      AuthService.logout();
+        // commit mutation logout
+      commit('logout');
+    },
   },
   modules: {
   }

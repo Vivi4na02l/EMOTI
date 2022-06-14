@@ -13,7 +13,7 @@ export const TutorService = {
                     name: tutor.name,
                     password: tutor.password,
                     gender: tutor.gender,
-                    birth_date: tutor.bod,
+                    dob: tutor.dob,
                     email: tutor.email
                 })
         });

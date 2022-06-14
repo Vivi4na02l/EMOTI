@@ -53,7 +53,7 @@
               type="text"
               id="txtUsername"
               placeholder="nome de utilizador"
-              v-model="username"
+              v-model="user.username"
               required
             />
             <br />
@@ -61,16 +61,16 @@
               type="password"
               id="txtPassword"
               placeholder="palavra-passe"
-              v-model="password"
+              v-model="user.password"
               required
             />
             <br>
             <div id="divRadios">
-              <input type="radio" value="Child" id="child" name="user">
+              <input type="radio" value="child" id="child" name="user" v-model="user.role" checked>
               <label for="child">Criança</label>
-              <input type="radio" value="Tutor" id="tutor" name="user">
+              <input type="radio" value="tutor" id="tutor" name="user" v-model="user.role">
               <label for="tutor">Tutor</label>
-              <input type="radio" value="Psychologist" id="psychologist" name="user">
+              <input type="radio" value="psychologist" id="psychologist" name="user" v-model="user.role">
               <label for="psychologist">Psicólogo</label>
             </div>
 
@@ -102,7 +102,8 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+// import { mapMutations } from "vuex";
+import { mapGetters } from "vuex";
 import NavBar from "../components/NavBar.vue";
 
 export default {
@@ -112,16 +113,57 @@ export default {
 
   data() {
     return {
-      username: "",
-      password: "",
+      user: {
+        username: "",
+        password: "",
+        role: ""
+      },
+      loading: false,
+      message: "",
+      errors: [],
     };
   },
+  computed: {
+    ...mapGetters(["getMessage", "getLoggedIn", "getLoggedUser"])
+  },
   methods: {
-    ...mapMutations(["SET_LOGGED_USER"]),
+    // ...mapMutations(["SET_LOGGED_USER"]),
+    
+    async login() {
+      // this.$router.push({ name: "Mainpage" });
+      // this.SET_LOGGED_USER(this.user.username);
+      this.loading = true;
+      this.errors = [];
+      if (this.user.username && this.user.password && this.user.role) {
+        try {
+          console.log(this.user);
+          await this.$store.dispatch("login", this.user);
 
-    login() {
-      this.$router.push({ name: "Mainpage" });
-      this.SET_LOGGED_USER(this.username);
+           this.$router.push({ name: "Mainpage" });
+          //console.log(this.$store.getters.getLoggedUser.role)
+          // if successfull login, navigate to pages corresponding to logged user role
+          // if (this.$store.getters.getLoggedUser.role == "admin")
+          //   this.$router.push("/admin");
+          // else
+          //   this.$router.push("/user");
+        } catch (error) {
+          console.log(error)
+          this.message =
+            (error.response && error.response.data) ||
+            error.message ||
+            error.toString();
+        } finally {
+          this.loading = false;
+        }
+      } else {
+        this.loading = false;
+        if (!this.user.username) {
+          this.errors.push("Username required.");
+        }
+        if (!this.user.password) {
+          this.errors.push("Password required.");
+        }
+      }
     },
   },
 };
