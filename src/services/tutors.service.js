@@ -1,5 +1,20 @@
 import API_URL from './config.js'
 
+function authHeader() {
+    // checks Local Storage for user item
+    let user = JSON.parse(localStorage.getItem('user'));
+
+    // if there is a logged user with accessToken (JWT)
+    if (user) {
+        // return HTTP authorization header for Node.js Express back-end
+        return {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + user
+        };
+    } else  //otherwise, return just header for content type
+        return { 'Content-Type': 'application/json' };
+}
+
 export const TutorService = {
     async register(tutor) {
         const response = await fetch(`${API_URL}/tutors`, {
@@ -15,6 +30,24 @@ export const TutorService = {
                     gender: tutor.gender,
                     dob: tutor.dob,
                     email: tutor.email
+                })
+        });
+        if (response.ok) {
+            const data = await response.json()
+            return data
+        } else {
+            throw Error(handleResponses(response.status))
+        }
+    },
+    async changePassword(user) {
+        const response = await fetch(`${API_URL}/tutors`, {
+            method: "PATCH",
+            headers: authHeader(),
+            body:
+                JSON.stringify({
+                    username: user.username,
+                    password: user.password,
+                    role: user.role
                 })
         });
         if (response.ok) {

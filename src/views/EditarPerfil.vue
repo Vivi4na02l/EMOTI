@@ -16,12 +16,13 @@
                     <div class="form-group">
                         <input type="password" id="txtConfirmPassword" placeholder="confirmar nova palavra-passe" v-model="form.confirm">
                     </div>
-                    <div>
+                    <div id="buttons">
                         <button class="btn" type="submit" id="btnSave">Guardar</button>
+                        <button class="btn" id="btnLogout" @click.prevent="handleLogout">Logout</button>
                     </div>
                 </form>
             </div>
-            <div class="col-7 mt-5" v-if="getloggedUser" id="diagrams"><br>
+            <div class="col-7 mt-5" v-if="isChild()" id="diagrams"><br>
                 <div class="mb-5">
                     <h1 style="color: #606060"><span style="color: #ffd167">{{this.getloggedUser.username}}</span> está a fazer progresso!</h1>
 
@@ -65,7 +66,11 @@
                 form: {
                     password: '',
                     confirm: ''
-                }
+                },
+                successful: false,
+                message: "",
+                loading: false,
+                errors: []
             }
         },
 
@@ -78,18 +83,52 @@
         methods: {
             ...mapMutations(['SET_NEW_PASSWORD']),
 
-            updatePassword() {
+            async updatePassword() {
+                this.message = "";
+                this.loading = true;
+                this.successful = false;
+                this.errors = [];
+
+                
+                this.form.username = this.getloggedUser.username,
+                this.form.role = this.getloggedUser.role
+
                 if (this.form.password == this.form.confirm) {
-                    alert(this.form.password)
-                    this.SET_NEW_PASSWORD(this.form.password)
+                    console.log(this.getloggedUser.role);
+                    try {
+                        if (this.getloggedUser.role == 'child') {
+                            await this.$store.dispatch("changePasswordChild", this.form /*formData*/);
+                        }
+                        if (this.getloggedUser.role == 'tutor') {
+                            await this.$store.dispatch("changePasswordTutor", this.form /*formData*/);
+                        }
+                        if (this.getloggedUser.role == 'psychologist') {
+                            await this.$store.dispatch("changePasswordPsychologist", this.form /*formData*/);
+                        }
+                        this.message = this.$store.getters.getMessage;
+
+                        this.successful = true;
+                    } catch (error) {
+                        this.message =
+                            (error.response && error.response.data) ||
+                            error.message || error.toString();
+                    } finally {
+                        this.loading = false;
+                    }
+                    
                 } else {
                     alert('As palavra-passe não coincidem')
                 }
             },
+
+            handleLogout() {
+                this.$store.dispatch("logout");
+                this.$router.push({ name: "Login" });
+            },
         
-            loggedUser() {
+            isChild() {
                 if (this.getloggedUser != null) {
-                    this.$store.state.loggedUser.type == 'criança'
+                    this.getloggedUser.role == 'child'
                 }
             },
         },
@@ -131,5 +170,19 @@
         color: #ffd167;
         border-width: 2px;
         border-color: #ffd167;
+    }
+    #btnLogout {
+        background-color: #ff4d4d;
+        color: #FFFFFF;
+        border-width: 2px;
+        border-color: #ff4d4d;
+    } #btnLogout:hover {
+        background-color: #FFFFFF;
+        color: #ff4d4d;
+        border-width: 2px;
+        border-color: #ff4d4d;
+    } #buttons {
+        display: flex;
+        justify-content: space-evenly;
     }
 </style>

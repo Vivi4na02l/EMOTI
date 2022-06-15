@@ -558,20 +558,16 @@ export default {
 
         //makes request by dispatching an action
         try {
-
-          // if (payload == 'child') {
-          //   this.form.game = [];
-
-          //   for (const emotion of this.arrayRecognizeEmotion) {
-          //     this.form.game.push({
-          //       emotion: emotion.name,
-          //       right: 0,
-          //       wrong: 0,
-          //     });
-          //   }
-          // }
-
           if (payload == 'child') {
+            this.form.game = [];
+
+            for (const emotion of this.arrayRecognizeEmotion) {
+              this.form.game.push({
+                emotion: emotion.name,
+                right: 0,
+                wrong: 0,
+              });
+            }
             await this.$store.dispatch("registerChild", this.form /*formData*/);
           }
           if (payload == 'tutor') {

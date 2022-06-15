@@ -196,10 +196,14 @@ export default new Vuex.Store({
       state.users.push(payload);
       // localStorage.users = JSON.stringify(state.users);
     },
-    SET_LOGOUT(state) {
-      state.loggedUser = null;
+    // SET_LOGOUT(state) {
+    //   state.loggedUser = null;
+    //   state.loggedIn = false;
+    //   // localStorage.removeItem("loggedUser");
+    // },
+    logout(state) {
       state.loggedIn = false;
-      // localStorage.removeItem("loggedUser");
+      state.loggedUser = null;
     },
     SET_NEW_PASSWORD(state, payload) {
       state.users.find((user) => user.username == state.loggedUser.username).password = payload
@@ -302,7 +306,36 @@ export default new Vuex.Store({
         throw error;
       }
     },
-
+    async changePasswordChild({ commit }, user) {
+      try {
+        const response = await ChildrenService.changePassword(user)
+        commit('SET_MESSAGE', response.msg)
+      }
+      catch (error) {
+        commit('SET_MESSAGE', '')
+        throw error;
+      }
+    },
+    async changePasswordTutor({ commit }, user) {
+      try {
+        const response = await TutorService.changePassword(user)
+        commit('SET_MESSAGE', response.msg)
+      }
+      catch (error) {
+        commit('SET_MESSAGE', '')
+        throw error;
+      }
+    },
+    async changePasswordPsychologist({ commit }, user) {
+      try {
+        const response = await PsychologistService.changePassword(user)
+        commit('SET_MESSAGE', response.msg)
+      }
+      catch (error) {
+        commit('SET_MESSAGE', '')
+        throw error;
+      }
+    },
     logout({ commit }) {
       AuthService.logout();
         // commit mutation logout

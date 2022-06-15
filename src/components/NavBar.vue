@@ -102,7 +102,7 @@
       </router-link>
       <router-link to="/editarPerfil" v-else>
         <button class="btn mt-3 mr-3" id="btnLoginPage">
-          <div class="m-1">EDITAR PERFIL</div>
+          <div class="m-1">PERFIL</div>
         </button>
       </router-link>
     </div>

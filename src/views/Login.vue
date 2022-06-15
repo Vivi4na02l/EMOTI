@@ -66,7 +66,7 @@
             />
             <br>
             <div id="divRadios">
-              <input type="radio" value="child" id="child" name="user" v-model="user.role" checked>
+              <input type="radio" value="child" id="child" name="user" v-model="user.role" required>
               <label for="child">Criança</label>
               <input type="radio" value="tutor" id="tutor" name="user" v-model="user.role">
               <label for="tutor">Tutor</label>
@@ -136,9 +136,9 @@ export default {
       this.errors = [];
       if (this.user.username && this.user.password && this.user.role) {
         try {
-          console.log(this.user);
+          // console.log(this.user);
           await this.$store.dispatch("login", this.user);
-
+          // console.log(this.$store.getters.getLoggedUser);
            this.$router.push({ name: "Mainpage" });
           //console.log(this.$store.getters.getLoggedUser.role)
           // if successfull login, navigate to pages corresponding to logged user role

@@ -15,9 +15,16 @@ export const AuthService = {
         });
         if (response.ok) {
             const data = await response.json();
-            if (data.accessToken)
-                localStorage.setItem('user', JSON.stringify(data));
-            return data;
+            console.log(data)
+            // data.role = user.role
+            // console.log(data)
+            if (data.token)
+                localStorage.setItem('user', JSON.stringify(data.token));
+            return {
+                username: user.username,
+                password: user.password,
+                role: user.role
+            };
         } else {
             throw Error(handleResponses(response.status));
         }
