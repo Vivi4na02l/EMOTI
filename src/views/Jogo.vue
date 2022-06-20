@@ -182,9 +182,9 @@ export default {
         await this.$store.dispatch("getAllEmotions");
         this.emotions = this.getEmotions;
         // console.log(this.emotions);
-        for (const emotion of this.emotions) {
-          emotion.checked = true
-        }
+        // for (const emotion of this.emotions) {
+        //   emotion.checked = true
+        // }
         for (const pos of this.emotions) {
           this.filteredEmotions.push({
             emotion: pos.name,
@@ -205,6 +205,21 @@ export default {
         this.loading = false;
       }
     },
+
+    // async updateStats() {
+    //   this.loading = true;
+    //   try {
+    //     await this.$store.dispatch("getAllEmotions");
+    //   }
+    //   catch (error) {
+    //     this.message =
+    //       (error.response && error.response.data) ||
+    //       error.message ||
+    //       error.toString();
+    //   } finally {
+    //     this.loading = false
+    //   }
+    // },
 
     imagePerLevel() {
       if (this.level != this.maxLevel) {
@@ -362,7 +377,7 @@ export default {
 
       if (nbrImages < 8) {
         this.maxLevel = nbrImages;
-        alert(this.maxLevel);
+        // alert(this.maxLevel);
       } else {
         this.maxLevel = 8;
       }

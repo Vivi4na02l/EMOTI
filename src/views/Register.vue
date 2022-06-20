@@ -555,7 +555,7 @@ export default {
         //makes request by dispatching an action
         try {
           if (payload == 'child') {
-            // this.form.game = [];
+            
 
             // for (const emotion of this.arrayRecognizeEmotion) {
             //   this.form.game.push({

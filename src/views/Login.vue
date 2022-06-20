@@ -116,7 +116,8 @@ export default {
       user: {
         username: "",
         password: "",
-        role: ""
+        role: "",
+        game: []
       },
       loading: false,
       message: "",
@@ -137,7 +138,9 @@ export default {
       if (this.user.username && this.user.password && this.user.role) {
         try {
           // console.log(this.user);
+          // this.user.game = [];
           await this.$store.dispatch("login", this.user);
+          console.log(this.user)
           // console.log(this.$store.getters.getLoggedUser);
            this.$router.push({ name: "Mainpage" });
           //console.log(this.$store.getters.getLoggedUser.role)

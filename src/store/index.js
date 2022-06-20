@@ -7,7 +7,7 @@ import { PsychologistService } from '../services/psychologists.service'
 import { TutorService } from '../services/tutors.service'
 import { QuestionService } from '../services/questions.service'
 import { EmotionService } from '../services/emotions.service';
-// import { EmotionService } from '../services/emotions.service'
+import { EmotionStatsService } from '../services/emotion_stats.service'
 
 Vue.use(Vuex)
 
@@ -30,117 +30,117 @@ export default new Vuex.Store({
     loggedIn: false,
     loggedUser: localStorage.user ? JSON.parse(localStorage.user) : null,
 
-    jogoRecognizeEmotion: localStorage.arrayEmotions ? JSON.parse(localStorage.arrayEmotions) : [
-      {
-        name: "alegria",
-        images: [
-          {
-            addedBy: "admin",
-            image: "imagens/emojis/alegria.svg",
-          },
-          {
-            addedBy: "admin",
-            image: "imagens/emojis/alegria2.png",
-          }
-        ]
-      },
-      {
-        name: "amor",
-        images: [
-          {
-            addedBy: "admin",
-            image: "imagens/emojis/amor.svg",
-          },
-          {
-            addedBy: "admin",
-            image: "imagens/emojis/amor2.png",
-          }
-        ]
-      },
-      {
-        name: "cansaço",
-        images: [
-          {
-            addedBy: "admin",
-            image: "imagens/emojis/cansaço.svg",
-          },
-          {
-            addedBy: "admin",
-            image: "imagens/emojis/cansaço2.png",
-          }
-        ]
-      },
-      {
-        name: "enojado",
-        images: [
-          {
-            addedBy: "admin",
-            image: "imagens/emojis/enojado.svg",
-          }
-        ]
-      },
-      {
-        name: "espanto",
-        images: [
-          {
-            addedBy: "admin",
-            image: "imagens/emojis/espanto.svg",
-          },
-          {
-            addedBy: "admin",
-            image: "imagens/emojis/espanto2.png",
-          }
-        ]
-      },
-      {
-        name: "medo",
-        images: [
-          {
-            addedBy: "admin",
-            image: "imagens/emojis/medo.svg",
-          },
-          {
-            addedBy: "admin",
-            image: "imagens/emojis/medo2.png",
-          }
-        ]
-      },
-      {
-        name: "raiva",
-        images: [
-          {
-            addedBy: "admin",
-            image: "imagens/emojis/raiva.svg",
-          },
-          {
-            addedBy: "admin",
-            image: "imagens/emojis/raiva2.png",
-          }
-        ]
-      },
-      {
-        name: "tristeza",
-        images: [
-          {
-            addedBy: "admin",
-            image: "imagens/emojis/tristeza.svg",
-          },
-          {
-            addedBy: "admin",
-            image: "imagens/emojis/tristeza2.png",
-          }
-        ]
-      },
-      {
-        name: "vergonha",
-        images: [
-          {
-            addedBy: "admin",
-            image: "imagens/emojis/vergonha.svg",
-          }
-        ]
-      },
-    ],
+    // jogoRecognizeEmotion: localStorage.arrayEmotions ? JSON.parse(localStorage.arrayEmotions) : [
+    //   {
+    //     name: "alegria",
+    //     images: [
+    //       {
+    //         addedBy: "admin",
+    //         image: "imagens/emojis/alegria.svg",
+    //       },
+    //       {
+    //         addedBy: "admin",
+    //         image: "imagens/emojis/alegria2.png",
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     name: "amor",
+    //     images: [
+    //       {
+    //         addedBy: "admin",
+    //         image: "imagens/emojis/amor.svg",
+    //       },
+    //       {
+    //         addedBy: "admin",
+    //         image: "imagens/emojis/amor2.png",
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     name: "cansaço",
+    //     images: [
+    //       {
+    //         addedBy: "admin",
+    //         image: "imagens/emojis/cansaço.svg",
+    //       },
+    //       {
+    //         addedBy: "admin",
+    //         image: "imagens/emojis/cansaço2.png",
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     name: "enojado",
+    //     images: [
+    //       {
+    //         addedBy: "admin",
+    //         image: "imagens/emojis/enojado.svg",
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     name: "espanto",
+    //     images: [
+    //       {
+    //         addedBy: "admin",
+    //         image: "imagens/emojis/espanto.svg",
+    //       },
+    //       {
+    //         addedBy: "admin",
+    //         image: "imagens/emojis/espanto2.png",
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     name: "medo",
+    //     images: [
+    //       {
+    //         addedBy: "admin",
+    //         image: "imagens/emojis/medo.svg",
+    //       },
+    //       {
+    //         addedBy: "admin",
+    //         image: "imagens/emojis/medo2.png",
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     name: "raiva",
+    //     images: [
+    //       {
+    //         addedBy: "admin",
+    //         image: "imagens/emojis/raiva.svg",
+    //       },
+    //       {
+    //         addedBy: "admin",
+    //         image: "imagens/emojis/raiva2.png",
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     name: "tristeza",
+    //     images: [
+    //       {
+    //         addedBy: "admin",
+    //         image: "imagens/emojis/tristeza.svg",
+    //       },
+    //       {
+    //         addedBy: "admin",
+    //         image: "imagens/emojis/tristeza2.png",
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     name: "vergonha",
+    //     images: [
+    //       {
+    //         addedBy: "admin",
+    //         image: "imagens/emojis/vergonha.svg",
+    //       }
+    //     ]
+    //   },
+    // ],
 
     arrayFAQ: [
       {
@@ -156,7 +156,8 @@ export default new Vuex.Store({
     ],
     message: "",
     questions: [],
-    emotions: []
+    emotions: [],
+    stats: []
   },
 
   getters: {
@@ -175,7 +176,8 @@ export default new Vuex.Store({
     getMessage: (state) => state.message,
     getUsers: (state) => state.users,
     getQuestions: (state) => state.questions,
-    getEmotions: (state) => state.emotions
+    getEmotions: (state) => state.emotions,
+    getStats: (state) => state.stats
   },
 
   mutations: {
@@ -237,22 +239,23 @@ export default new Vuex.Store({
     //   answer: ''
     // }),
 
-    MUTATE_USER_ANSWERS(state, payload) {
-      if (state.loggedUser.type == 'crianca') {
-        if (payload.answer == 'right') {
-          state.users.find((user) => user.username == state.loggedUser.username).game
-            .find((pos) => pos.emotion == payload.emotion)
-            .right++
-        }
+    // MUTATE_USER_ANSWERS(state, payload) {
+    //   // state.loggedUser.game = []
+      
+    //     if (payload.answer == 'right') {
+    //       state.loggedUser.game
+    //         .find((pos) => pos.emotion == payload.emotion)
+    //         .right++
+    //     }
 
-        if (payload.answer == 'wrong') {
-          state.users.find((user) => user.username == state.loggedUser.username).game
-            .find((pos) => pos.emotion == payload.emotion)
-            .wrong++
-        }
-      }
-      localStorage.users = JSON.stringify(state.users);
-    },
+    //     if (payload.answer == 'wrong') {
+    //       state.loggedUser.game
+    //         .find((pos) => pos.emotion == payload.emotion)
+    //         .wrong++
+    //     }
+    //     console.log(state.loggedUser);
+    //   // localStorage.users = JSON.stringify(state.users);
+    // },
     SET_MESSAGE(state, payload) {
       state.message = payload
     },
@@ -261,6 +264,9 @@ export default new Vuex.Store({
     },
     SET_EMOTIONS(state, payload) {
       state.emotions = payload
+    },
+    SET_STATS(state, payload) {
+      state.stats = payload
     }
   },
   actions: {
@@ -408,6 +414,19 @@ export default new Vuex.Store({
     //     throw error;
     //   }
     // },
+
+    async updateStats({ commit }, payload) {
+      try {
+        const response = await EmotionStatsService.changeStats(payload.stats, payload.id)
+        commit('SET_EMOTIONS', response)
+      }
+      catch (error) {
+        commit('SET_EMOTIONS', []);
+        commit("SET_MESSAGE", error);
+        throw error;
+      }
+    },
+    
 
 
 

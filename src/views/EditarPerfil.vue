@@ -22,7 +22,7 @@
                     </div>
                 </form>
             </div>
-            <div class="col-7 mt-5" v-if="isChild()" id="diagrams"><br>
+            <div class="col-7 mt-5" v-if="this.getloggedUser.role=='child'" id="diagrams"><br>
                 <div class="mb-5">
                     <h1 style="color: #606060"><span style="color: #ffd167">{{this.getloggedUser.username}}</span> está a fazer progresso!</h1>
 
@@ -124,10 +124,6 @@
             handleLogout() {
                 this.$store.dispatch("logout");
                 this.$router.push({ name: "Login" });
-            },
-        
-            isChild() {
-                this.getloggedUser.role == 'child'
             },
         },
     }
