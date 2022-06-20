@@ -5,7 +5,8 @@ import { AuthService } from '../services/auth.service';
 import { ChildrenService } from '../services/children.service'
 import { PsychologistService } from '../services/psychologists.service'
 import { TutorService } from '../services/tutors.service'
-// import { QuestionService } from '../services/questions.service'
+import { QuestionService } from '../services/questions.service'
+import { EmotionService } from '../services/emotions.service';
 // import { EmotionService } from '../services/emotions.service'
 
 Vue.use(Vuex)
@@ -25,15 +26,9 @@ export default new Vuex.Store({
     //       type: "user"
     //     }
     //   ],
-    users: [
-      {
-        username: "Admin",
-        password: "Esmad_2122",
-        role: "child"
-      }
-    ],
+    users: [],
     loggedIn: false,
-    loggedUser: null,
+    loggedUser: localStorage.user ? JSON.parse(localStorage.user) : null,
 
     jogoRecognizeEmotion: localStorage.arrayEmotions ? JSON.parse(localStorage.arrayEmotions) : [
       {
@@ -160,6 +155,8 @@ export default new Vuex.Store({
       }
     ],
     message: "",
+    questions: [],
+    emotions: []
   },
 
   getters: {
@@ -177,6 +174,8 @@ export default new Vuex.Store({
     getLoggedIn: (state) => state.loggedIn,
     getMessage: (state) => state.message,
     getUsers: (state) => state.users,
+    getQuestions: (state) => state.questions,
+    getEmotions: (state) => state.emotions
   },
 
   mutations: {
@@ -188,14 +187,14 @@ export default new Vuex.Store({
       state.loggedIn = false;
       state.loggedUser = null;
     },
-    SET_LOGGED_USER(state, payload) {
-      state.loggedUser = state.users.find((user) => user.username === payload);
-      localStorage.loggedUser = JSON.stringify(state.loggedUser);
-    },
-    SET_NEW_USER(state, payload) {
-      state.users.push(payload);
-      // localStorage.users = JSON.stringify(state.users);
-    },
+    // SET_LOGGED_USER(state, payload) {
+    //   state.loggedUser = state.users.find((user) => user.username === payload);
+    //   localStorage.loggedUser = JSON.stringify(state.loggedUser);
+    // },
+    // SET_NEW_USER(state, payload) {
+    //   state.users.push(payload);
+    //   // localStorage.users = JSON.stringify(state.users);
+    // },
     // SET_LOGOUT(state) {
     //   state.loggedUser = null;
     //   state.loggedIn = false;
@@ -205,10 +204,10 @@ export default new Vuex.Store({
       state.loggedIn = false;
       state.loggedUser = null;
     },
-    SET_NEW_PASSWORD(state, payload) {
-      state.users.find((user) => user.username == state.loggedUser.username).password = payload
-      // localStorage.users = JSON.stringify(state.users);
-    },
+    // SET_NEW_PASSWORD(state, payload) {
+    //   state.users.find((user) => user.username == state.loggedUser.username).password = payload
+    //   // localStorage.users = JSON.stringify(state.users);
+    // },
 
     MUTATE_ARRAY_EMOTIONS(state, payload) {
       state.jogoRecognizeEmotion.push(payload)
@@ -232,11 +231,11 @@ export default new Vuex.Store({
       localStorage.arrayEmotions = JSON.stringify(state.jogoRecognizeEmotion);
     },
 
-    MUTATE_ARRAY_QUESTIONS: (state, payload) => state.arrayFAQ.push({
-      approved: false,
-      question: payload,
-      answer: ''
-    }),
+    // MUTATE_ARRAY_QUESTIONS: (state, payload) => state.arrayFAQ.push({
+    //   approved: false,
+    //   question: payload,
+    //   answer: ''
+    // }),
 
     MUTATE_USER_ANSWERS(state, payload) {
       if (state.loggedUser.type == 'crianca') {
@@ -252,11 +251,16 @@ export default new Vuex.Store({
             .wrong++
         }
       }
-
       localStorage.users = JSON.stringify(state.users);
     },
     SET_MESSAGE(state, payload) {
       state.message = payload
+    },
+    SET_QUESTIONS(state,payload) {
+      state.questions = payload
+    },
+    SET_EMOTIONS(state, payload) {
+      state.emotions = payload
     }
   },
   actions: {
@@ -270,6 +274,7 @@ export default new Vuex.Store({
         throw error;
       }
     },
+
     /* Registo de uma criança */
     async registerChild({ commit }, child) {
       try {
@@ -306,6 +311,7 @@ export default new Vuex.Store({
         throw error;
       }
     },
+
     async changePasswordChild({ commit }, user) {
       try {
         const response = await ChildrenService.changePassword(user)
@@ -316,6 +322,7 @@ export default new Vuex.Store({
         throw error;
       }
     },
+
     async changePasswordTutor({ commit }, user) {
       try {
         const response = await TutorService.changePassword(user)
@@ -326,6 +333,7 @@ export default new Vuex.Store({
         throw error;
       }
     },
+
     async changePasswordPsychologist({ commit }, user) {
       try {
         const response = await PsychologistService.changePassword(user)
@@ -336,11 +344,74 @@ export default new Vuex.Store({
         throw error;
       }
     },
+
     logout({ commit }) {
       AuthService.logout();
         // commit mutation logout
       commit('logout');
     },
+
+    async getAllQuestions( { commit } ) {
+      try {
+        const response = await QuestionService.getAll()
+        commit('SET_QUESTIONS', response)
+      }
+      catch (error) {
+        commit('SET_QUESTIONS', []);
+        commit("SET_MESSAGE", error);
+        throw error;
+      }
+    },
+
+    async createQuestion( { commit }, question) {
+      try {
+        const response = await QuestionService.create(question)
+        commit('SET_MESSAGE', response.msg)
+      }
+      catch (error) {
+        commit('SET_MESSAGE', '')
+        throw error;
+      }
+    },
+
+    async answer( { commit }, payload) {
+      try {
+        const response = await QuestionService.answer(payload.answer,payload.id)
+        commit('SET_MESSAGE', response.msg)
+      }
+      catch (error) {
+        commit('SET_MESSAGE', '')
+        throw error;
+      }
+    },
+  
+    async getAllEmotions({ commit }) {
+      try {
+        const response = await EmotionService.getAll()
+        commit('SET_EMOTIONS', response)
+      }
+      catch (error) {
+        commit('SET_EMOTIONS', []);
+        commit("SET_MESSAGE", error);
+        throw error;
+      }
+    },
+
+    // async createEmotion({ commit }, emotion) {
+    //   try {
+    //     const response = await EmotionService.create(emotion)
+    //     commit('SET_EMOTIONS', response)
+    //   }
+    //   catch (error) {
+    //     commit('SET_EMOTIONS', []);
+    //     commit("SET_MESSAGE", error);
+    //     throw error;
+    //   }
+    // },
+
+
+
+
   },
   modules: {
   }

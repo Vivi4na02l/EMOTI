@@ -33,8 +33,9 @@
 
             </div>
             
-            <router-link to="/SaibaMais" class="mr-4">
-                <button class="btn mt-2" id="btnSeeAll">Ver tudo</button>
+            <router-link to="/SaibaMais" class="mr-4" v-if="this.getloggedUser.role != 'child'">
+                <button class="btn mt-2" id="btnSeeAll" v-if="this.getloggedUser.role == 'tutor'">Faça uma pergunta</button>
+                <button class="btn mt-2" id="btnSeeAll" v-else-if="this.getloggedUser.role == 'psychologist'">Responda a questões</button>
             </router-link>
         </div>
 
@@ -68,6 +69,7 @@
             ...mapGetters({
                 arrayRecognizeEmotion: 'getjogoRecognizeEmotion',
                 getarrayFAQ: 'getarrayFAQ',
+                getloggedUser: 'getLoggedUser'
             }),
         },
 

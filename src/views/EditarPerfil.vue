@@ -127,9 +127,7 @@
             },
         
             isChild() {
-                if (this.getloggedUser != null) {
-                    this.getloggedUser.role == 'child'
-                }
+                this.getloggedUser.role == 'child'
             },
         },
     }

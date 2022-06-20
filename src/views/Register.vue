@@ -126,7 +126,6 @@
                   v-model="form.autism_level"
                   style="width: 40%"
                 >
-                  <option value=""></option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -169,7 +168,6 @@
                   v-model="form.gender"
                   style="width: 70%"
                 >
-                  <option value=""></option>
                   <option value="male">masculino</option>
                   <option value="female">feminino</option>
                 </select>
@@ -288,7 +286,6 @@
                   v-model="form.gender"
                   style="width: 70%"
                 >
-                  <option value=""></option>
                   <option value="male">masculino</option>
                   <option value="female">feminino</option>
                 </select>
@@ -408,7 +405,6 @@
                   v-model="form.gender"
                   style="width: 70%"
                 >
-                  <option value=""></option>
                   <option value="male">masculino</option>
                   <option value="female">feminino</option>
                 </select>
@@ -559,15 +555,15 @@ export default {
         //makes request by dispatching an action
         try {
           if (payload == 'child') {
-            this.form.game = [];
+            // this.form.game = [];
 
-            for (const emotion of this.arrayRecognizeEmotion) {
-              this.form.game.push({
-                emotion: emotion.name,
-                right: 0,
-                wrong: 0,
-              });
-            }
+            // for (const emotion of this.arrayRecognizeEmotion) {
+            //   this.form.game.push({
+            //     emotion: emotion.name,
+            //     right: 0,
+            //     wrong: 0,
+            //   });
+            // }
             await this.$store.dispatch("registerChild", this.form /*formData*/);
           }
           if (payload == 'tutor') {

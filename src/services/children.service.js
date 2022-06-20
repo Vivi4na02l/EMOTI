@@ -1,25 +1,24 @@
 import API_URL from './config.js'
 
-function authHeader() {
-    // checks Local Storage for user item
-    let user = JSON.parse(localStorage.getItem('user'));
+// function authHeader() {
+//     // checks Local Storage for user item
+//     let user = JSON.parse(localStorage.getItem('user'));
 
-    // if there is a logged user with accessToken (JWT)
-    if (user) {
-        // return HTTP authorization header for Node.js Express back-end
-        return {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + user
-        };
-    } else  //otherwise, return just header for content type
-        return { 'Content-Type': 'application/json' };
-}
+//     // if there is a logged user with accessToken (JWT)
+//     if (user) {
+//         // return HTTP authorization header for Node.js Express back-end
+//         return {
+//             'Content-Type': 'application/json',
+//             'Authorization': 'Bearer ' + user
+//         };
+//     } else  //otherwise, return just header for content type
+//         return { 'Content-Type': 'application/json' };
+// }
 
 export const ChildrenService = {
     async register(child) {
         const response = await fetch(`${API_URL}/children`, {
             method: "POST",
-            headers: authHeader(),
             body:
                 JSON.stringify({
                     username: child.username,

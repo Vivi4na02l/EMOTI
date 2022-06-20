@@ -43,7 +43,7 @@
 
         <div class="row row-cols-2">
           <div
-            v-for="(emotion, index) in this.arrayRecognizeEmotion"
+            v-for="(emotion, index) in this.emotions"
             :key="index"
             class="col"
           >
@@ -140,8 +140,10 @@ export default {
       filteredEmotions: [],
       randomEmotionsImages: [],
       randomEmotionsSorted: [],
-
       wrong: 0,
+      emotions: [],
+      message: "",
+      loading: false,
     };
   },
 
@@ -149,29 +151,60 @@ export default {
     ...mapGetters({
       arrayRecognizeEmotion: "getjogoRecognizeEmotion",
       loggedUser: "getLoggedUser",
+      getEmotions: "getEmotions"
     }),
 
     ...mapGetters(["getRandomImageEmotion", "isEmotion"]),
   },
 
-  created() {
-    for (const pos of this.arrayRecognizeEmotion) {
-      this.filteredEmotions.push({
-        emotion: pos.name,
-        checked: true,
-      });
-    }
+  // created() {
+  //   for (const pos of this.arrayRecognizeEmotion) {
+  //     this.filteredEmotions.push({
+  //       emotion: pos.name,
+  //       checked: true,
+  //     });
+  //   }
+  //   console.log(this.emotions)
+  //   this.createRandomEmotions();
+  //   this.createEmotionButtons();
 
-    this.createRandomEmotions();
-    this.createEmotionButtons();
+  //   this.imagePerLevel();
 
-    this.imagePerLevel();
-
-    console.log("random: " + JSON.stringify(this.randomEmotionsImages));
-  },
+  //   console.log("random: " + JSON.stringify(this.randomEmotionsImages));
+  // },
 
   methods: {
     ...mapMutations(["SET_LOGGED_USER"]),
+    
+    async getAllEmotions() {
+      this.loading = true;
+      try {
+        await this.$store.dispatch("getAllEmotions");
+        this.emotions = this.getEmotions;
+        // console.log(this.emotions);
+        for (const emotion of this.emotions) {
+          emotion.checked = true
+        }
+        for (const pos of this.emotions) {
+          this.filteredEmotions.push({
+            emotion: pos.name,
+            checked: true,
+          });
+        }
+        console.log(this.filteredEmotions);
+        this.createRandomEmotions();
+        this.createEmotionButtons();
+        this.imagePerLevel();
+
+      } catch (error) {
+        this.message =
+          (error.response && error.response.data) ||
+          error.message ||
+          error.toString();
+      } finally {
+        this.loading = false;
+      }
+    },
 
     imagePerLevel() {
       if (this.level != this.maxLevel) {
@@ -187,52 +220,34 @@ export default {
     createRandomEmotions() {
       for (let index = 0; index < this.maxLevel; index++) {
         let emotion = Math.floor(
-          Math.random() * this.arrayRecognizeEmotion.length
+          Math.random() * this.emotions.length
         );
 
         if (this.filteredEmotions[emotion].checked) {
-          if (
-            !this.randomEmotionsImages.some(
-              (pos) => pos.emotion == this.arrayRecognizeEmotion[emotion].name
-            )
-          ) {
-            let image = Math.floor(
-              Math.random() * this.arrayRecognizeEmotion[emotion].images.length
-            );
-
+          if (!this.randomEmotionsImages.some((pos) => pos.emotion == this.emotions[emotion].name)) {
+          //   let image = Math.floor(
+          //     Math.random() * this.emotions[emotion].images.length
+          //   );
             this.randomEmotionsImages.push({
               pos: index,
-              emotion: this.arrayRecognizeEmotion[emotion].name,
-              image: this.arrayRecognizeEmotion[emotion].images[image].image,
+              emotion: this.emotions[emotion].name,
+              image: this.emotions[emotion].image
             });
           } else {
-            let image = Math.floor(
-              Math.random() * this.arrayRecognizeEmotion[emotion].images.length
-            );
+          //   let image = Math.floor(
+          //     Math.random() * this.emotions[emotion].images.length
+          //   );
             // let posInArray = this.randomEmotionsImages.find(pos => pos.emotion == this.arrayRecognizeEmotion[emotion].name).pos
 
             // no array de emotions/images aleatórios, verifica se a emoção aleatória que foi "pega" (e que já existe no array randomEmotionsImages) tem mais alguma imagem correspondente à mesma, para ser adicionada ao array respetivo de imagens
-            if (
-              this.randomEmotionsImages
-                .filter(
-                  (pos) =>
-                    pos.emotion == this.arrayRecognizeEmotion[emotion].name
-                )
-                .every(
-                  (pos) =>
-                    pos.image !=
-                    this.arrayRecognizeEmotion[emotion].images[image].image
-                )
-            ) {
+            if (this.randomEmotionsImages.filter((pos) => pos.emotion == this.emotions[emotion].name).every((pos) => pos.image != this.emotions[emotion].image)) {
               // this.arrayRecognizeEmotion[emotion].images[image].some(image => image.image !=)
               // this.randomEmotionsImages[posInArray].image != this.arrayRecognizeEmotion[emotion].images[image].image ) {            // checa no array de imagens pego na linha anterior, se há alguma imagem igual à imagem aleatória a querer ser adicionada
-
               this.randomEmotionsImages.push({
                 pos: index,
-                emotion: this.arrayRecognizeEmotion[emotion].name,
-                image: this.arrayRecognizeEmotion[emotion].images[image].image,
+                emotion: this.emotions[emotion].name,
+                image: this.emotions[emotion].image,
               });
-
               index += 1;
             }
             index -= 1;
@@ -259,15 +274,15 @@ export default {
         let cycle = this.maxLevel - this.randomEmotionsSorted.length;
         for (let index = 0; index < cycle; index++) {
           let emotion = Math.floor(
-            Math.random() * this.arrayRecognizeEmotion.length
+            Math.random() * this.emotions.length
           );
           if (
             !this.randomEmotionsSorted.some(
-              (pos) => pos == this.arrayRecognizeEmotion[emotion].name
+              (pos) => pos == this.emotions[emotion].name
             )
           ) {
             this.randomEmotionsSorted.push(
-              this.arrayRecognizeEmotion[emotion].name
+              this.emotions[emotion].name
             );
           } else {
             index -= 1;
@@ -284,7 +299,7 @@ export default {
 
       if (btnEmotion == this.currentEmotionImage.emotion) {
         if (this.loggedUser != null) {
-          if (this.loggedUser.type == "crianca") {
+          if (this.loggedUser.role == "child") {
             this.$store.commit("MUTATE_USER_ANSWERS", {
               emotion: this.currentEmotionImage.emotion,
               answer: "right",
@@ -317,7 +332,7 @@ export default {
 
       this.filteredEmotions.filter((pos) => pos.checked == true).length;
 
-      this.changeMaxLevel();
+      this.changeMaxLevel(); //aqui
 
       this.randomEmotionsImages = [];
       this.createRandomEmotions();
@@ -330,18 +345,20 @@ export default {
     },
 
     changeMaxLevel() {
-      let arrayRecognizeEmotionFiltered = this.arrayRecognizeEmotion.filter(
+      let arrayRecognizeEmotionFiltered = this.emotions.filter(
         (posEmotion) =>
           this.filteredEmotions
             .filter((pos) => pos.checked == true)
             .find((posChecked) => posChecked.emotion == posEmotion.name)
       );
 
-      let nbrImages = 0;
+      // let nbrImages = 0;
 
-      for (const emotionFiltered of arrayRecognizeEmotionFiltered) {
-        nbrImages = nbrImages + emotionFiltered.images.length;
-      }
+      // for (const emotionFiltered of arrayRecognizeEmotionFiltered) {
+      //   nbrImages = nbrImages + emotionFiltered.images.length;
+      // }
+
+      let nbrImages = arrayRecognizeEmotionFiltered.length
 
       if (nbrImages < 8) {
         this.maxLevel = nbrImages;
@@ -365,6 +382,9 @@ export default {
       this.imagePerLevel();
     },
   },
+  mounted() {
+    this.getAllEmotions()
+  }
 };
 </script>
 
