@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: '/EMOTI/'
+  publicPath: '/EMOTI/src/App.vue'
 }
