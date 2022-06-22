@@ -151,7 +151,8 @@ export default {
     ...mapGetters({
       arrayRecognizeEmotion: "getjogoRecognizeEmotion",
       loggedUser: "getLoggedUser",
-      getEmotions: "getEmotions"
+      getEmotions: "getEmotions",
+      getUser: "getUser"
     }),
 
     ...mapGetters(["getRandomImageEmotion", "isEmotion"]),
@@ -177,6 +178,7 @@ export default {
     ...mapMutations(["SET_LOGGED_USER"]),
     
     async getAllEmotions() {
+      console.log(this.getUser)
       this.loading = true;
       try {
         await this.$store.dispatch("getAllEmotions");
@@ -208,8 +210,14 @@ export default {
 
     // async updateStats() {
     //   this.loading = true;
+    //    const stats = {
+            // childUsername: this.loggedUser.username,
+            //     emotionId: emotion.emotionId,
+            //     right: emotion.right,
+            //     wrong: emotion.wrong
+    //  }
     //   try {
-    //     await this.$store.dispatch("getAllEmotions");
+    //     await this.$store.dispatch("changeStats", {stats, id});
     //   }
     //   catch (error) {
     //     this.message =
@@ -315,6 +323,7 @@ export default {
       if (btnEmotion == this.currentEmotionImage.emotion) {
         if (this.loggedUser != null) {
           if (this.loggedUser.role == "child") {
+            console.log(this.currentEmotionImage.emotion)
             this.$store.commit("MUTATE_USER_ANSWERS", {
               emotion: this.currentEmotionImage.emotion,
               answer: "right",

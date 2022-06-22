@@ -12,15 +12,15 @@ export const EmotionStatsService = {
             throw Error(handleResponses(response.status))
         }
     },
-    async changeStats(emotion,id) {
+    async changeStats(stats,id) {
         const response = await fetch(`${API_URL}/children/${id}/emotion_stats`, {
             method: "PUT",
             body: 
                 JSON.stringify({
-                childUsername: emotion.childUsername,
-                emotionId: emotion.emotionId,
-                right: emotion.right,
-                wrong: emotion.wrong
+                childUsername: stats.username,
+                emotionId: stats.emotionId,
+                right: stats.right,
+                wrong: stats.wrong
             })
         });
         if (response.ok) {

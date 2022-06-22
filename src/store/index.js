@@ -28,7 +28,8 @@ export default new Vuex.Store({
     //   ],
     users: [],
     loggedIn: false,
-    loggedUser: localStorage.user ? JSON.parse(localStorage.user) : null,
+    loggedUser: [],
+    user: localStorage.user ? JSON.parse(localStorage.user) : null,
 
     // jogoRecognizeEmotion: localStorage.arrayEmotions ? JSON.parse(localStorage.arrayEmotions) : [
     //   {
@@ -177,13 +178,15 @@ export default new Vuex.Store({
     getUsers: (state) => state.users,
     getQuestions: (state) => state.questions,
     getEmotions: (state) => state.emotions,
-    getStats: (state) => state.stats
+    getStats: (state) => state.stats,
+    getUser: (state) => state.user
   },
 
   mutations: {
     loginSuccess(state, payload) {
       state.loggedIn = true;
       state.loggedUser = payload;
+      state.user = payload
     },
     loginFailure(state) {
       state.loggedIn = false;
@@ -205,6 +208,7 @@ export default new Vuex.Store({
     logout(state) {
       state.loggedIn = false;
       state.loggedUser = null;
+      state.user = null
     },
     // SET_NEW_PASSWORD(state, payload) {
     //   state.users.find((user) => user.username == state.loggedUser.username).password = payload
@@ -418,10 +422,10 @@ export default new Vuex.Store({
     async updateStats({ commit }, payload) {
       try {
         const response = await EmotionStatsService.changeStats(payload.stats, payload.id)
-        commit('SET_EMOTIONS', response)
+        commit('SET_MESSAGE', response)
       }
       catch (error) {
-        commit('SET_EMOTIONS', []);
+        // commit('SET_EMOTIONS', []);
         commit("SET_MESSAGE", error);
         throw error;
       }
